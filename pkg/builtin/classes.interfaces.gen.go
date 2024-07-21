@@ -3684,6 +3684,7 @@ type EditorNode3DGizmo interface {
 	// TODO: Implement virtual method: Internal_GetHandleName(id int32,secondary bool,) String
 	// TODO: Implement virtual method: Internal_IsHandleHighlighted(id int32,secondary bool,) bool
 	// TODO: Implement virtual method: Internal_GetHandleValue(id int32,secondary bool,) Variant
+	// TODO: Implement virtual method: Internal_BeginHandleAction(id int32,secondary bool,)
 	// TODO: Implement virtual method: Internal_SetHandle(id int32,secondary bool,camera Camera3D,point Vector2,)
 	// TODO: Implement virtual method: Internal_CommitHandle(id int32,secondary bool,restore Variant,cancel bool,)
 	// TODO: Implement virtual method: Internal_SubgizmosIntersectRay(camera Camera3D,point Vector2,) int32
@@ -3717,6 +3718,7 @@ type EditorNode3DGizmoPlugin interface {
 	// TODO: Implement virtual method: Internal_GetHandleName(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,) String
 	// TODO: Implement virtual method: Internal_IsHandleHighlighted(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,) bool
 	// TODO: Implement virtual method: Internal_GetHandleValue(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,) Variant
+	// TODO: Implement virtual method: Internal_BeginHandleAction(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,)
 	// TODO: Implement virtual method: Internal_SetHandle(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,camera Camera3D,screen_pos Vector2,)
 	// TODO: Implement virtual method: Internal_CommitHandle(gizmo RefEditorNode3DGizmo,handle_id int32,secondary bool,restore Variant,cancel bool,)
 	// TODO: Implement virtual method: Internal_SubgizmosIntersectRay(gizmo RefEditorNode3DGizmo,camera Camera3D,screen_pos Vector2,) int32
@@ -7158,6 +7160,7 @@ type NavigationAgent3D interface {
 }
 type NavigationLink2D interface {
 	Node2D
+	GetRid() RID
 	SetEnabled(enabled bool)
 	IsEnabled() bool
 	SetBidirectional(bidirectional bool)
@@ -7181,6 +7184,7 @@ type NavigationLink2D interface {
 }
 type NavigationLink3D interface {
 	Node3D
+	GetRid() RID
 	SetEnabled(enabled bool)
 	IsEnabled() bool
 	SetBidirectional(bidirectional bool)
@@ -7424,6 +7428,7 @@ type NavigationPolygon interface {
 }
 type NavigationRegion2D interface {
 	Node2D
+	GetRid() RID
 	SetNavigationPolygon(navigation_polygon RefNavigationPolygon)
 	GetNavigationPolygon() RefNavigationPolygon
 	SetEnabled(enabled bool)
@@ -7451,6 +7456,7 @@ type NavigationRegion2D interface {
 }
 type NavigationRegion3D interface {
 	Node3D
+	GetRid() RID
 	SetNavigationMesh(navigation_mesh RefNavigationMesh)
 	GetNavigationMesh() RefNavigationMesh
 	SetEnabled(enabled bool)
@@ -11110,6 +11116,7 @@ type RenderingServer interface {
 	CanvasItemSetUseParentMaterial(item RID, enabled bool)
 	CanvasItemSetVisibilityNotifier(item RID, enable bool, area Rect2, enter_callable Callable, exit_callable Callable)
 	CanvasItemSetCanvasGroupMode(item RID, mode RenderingServerCanvasGroupMode, clear_margin float32, fit_empty bool, fit_margin float32, blur_mipmaps bool)
+	DebugCanvasItemGetRect(item RID) Rect2
 	CanvasLightCreate() RID
 	CanvasLightAttachToCanvas(light RID, canvas RID)
 	CanvasLightSetEnabled(light RID, enabled bool)

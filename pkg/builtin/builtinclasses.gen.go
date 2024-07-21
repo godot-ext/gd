@@ -2861,8 +2861,7 @@ func (cx *String) Module_PackedColorArray(right PackedColorArray) String {
 // Module_PackedVector4Array operator
 func (cx *String) Module_PackedVector4Array(right PackedVector4Array) String {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[String](globalStringMethodBindings.operator_module_PackedVector4Array, lt, rt)
 }
 
@@ -9427,8 +9426,7 @@ func (cx *Vector4) In_Array(right Array) bool {
 // In_PackedVector4Array operator
 func (cx *Vector4) In_PackedVector4Array(right PackedVector4Array) bool {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[bool](globalVector4MethodBindings.operator_in_PackedVector4Array, lt, rt)
 }
 
@@ -17318,8 +17316,7 @@ func (cx *StringName) Module_PackedColorArray(right PackedColorArray) String {
 // Module_PackedVector4Array operator
 func (cx *StringName) Module_PackedVector4Array(right PackedVector4Array) String {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[String](globalStringNameMethodBindings.operator_module_PackedVector4Array, lt, rt)
 }
 
@@ -26798,7 +26795,7 @@ func (cx *PackedVector4Array) AppendArray(array PackedVector4Array) {
 	}
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
-	args[0] = PackedVector4ArrayEncoder.EncodeTypePtr(array)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&array))
 
 	CallBuiltinMethodPtrNoRet(mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -27184,23 +27181,20 @@ func (cx *PackedVector4Array) In_Array(right Array) bool {
 // Equal_PackedVector4Array operator
 func (cx *PackedVector4Array) Equal_PackedVector4Array(right PackedVector4Array) bool {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_equal_PackedVector4Array, lt, rt)
 }
 
 // Not_equal_PackedVector4Array operator
 func (cx *PackedVector4Array) Not_equal_PackedVector4Array(right PackedVector4Array) bool {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_not_equal_PackedVector4Array, lt, rt)
 }
 
 // Add_PackedVector4Array operator
 func (cx *PackedVector4Array) Add_PackedVector4Array(right PackedVector4Array) PackedVector4Array {
 	lt := cx.NativeConstPtr()
-	eRight := PackedVector4ArrayEncoder.EncodeTypePtr(right)
-	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[PackedVector4Array](globalPackedVector4ArrayMethodBindings.operator_add_PackedVector4Array, lt, rt)
 }

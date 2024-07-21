@@ -240,10 +240,7 @@ func GoCallback_ClassCreationInfoGet(pInstance C.GDExtensionClassInstancePtr, pN
 	}
 	gdStrV := v.ToString()
 	defer gdStrV.Destroy()
-	log.Info("reflect method called",
-		zap.String("ret", util.ReflectValueSliceToString(reflectedRet)),
-		zap.String("v", gdStrV.ToUtf8()),
-	)
+	//log.Info("reflect method called", zap.String("ret", util.ReflectValueSliceToString(reflectedRet)), zap.String("v", gdStrV.ToUtf8()), )
 	*(*Variant)(unsafe.Pointer(rRet)) = v
 	return 1
 }
@@ -283,9 +280,7 @@ func GoCallback_ClassCreationInfoSet(pInstance C.GDExtensionClassInstancePtr, pN
 		reflect.ValueOf(v),
 	}
 	reflectedRet := mcmi.MethodBind.PtrcallFunc.Call(args)
-	log.Info("reflect method called",
-		zap.String("ret", util.ReflectValueSliceToString(reflectedRet)),
-	)
+	//log.Info("reflect method called", zap.String("ret", util.ReflectValueSliceToString(reflectedRet)), )
 	if !reflectedRet[0].Bool() {
 		return 0
 	}

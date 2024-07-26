@@ -746,3 +746,30 @@ func goEncodeIsReference(goType string) bool {
 func astVariantMetadata(cEnumVariantType string) encoderTypeMetadata {
 	return encoderTypeMap[cEnumVariantType]
 }
+
+func goHasStrTypeInParams(args []extensionapiparser.Argument) bool {
+	for _, a := range args {
+		if a.IsStringType() {
+			return true
+		}
+	}
+	return false
+}
+func goIsStringType(arg extensionapiparser.Argument) bool {
+	return arg.IsStringType()
+}
+func goArgumentNameExt(t extensionapiparser.Argument) string {
+	if t.Type == "String" || t.Type == "StringName" {
+		return "str_" + goArgumentName(t.Name)
+	} else {
+		return goArgumentName(t.Name)
+	}
+}
+
+func goArgumentTypeExt(t extensionapiparser.Argument) string {
+	if t.Type == "String" || t.Type == "StringName" {
+		return "string"
+	} else {
+		return goArgumentType(t.Type)
+	}
+}

@@ -79,6 +79,14 @@ type Argument struct {
 	Meta         string `json:"meta"`
 }
 
+func (a Argument) IsStringType() bool {
+	switch a.Type {
+	case "String", "StringName":
+		return true
+	}
+	return false
+}
+
 func (a Argument) HasDestroy() bool {
 	switch a.Type {
 	case "String", "StringName":

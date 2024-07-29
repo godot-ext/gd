@@ -224,8 +224,8 @@ func (cx *{{ $c.Name }}) {{ goMethodName $m.Name }}_StrExt(
     {{ end -}}
     {{ end -}}{{/* if fnReturnType */}}
 }
-{{ end }}
-{{ end }}
+{{ end }}{{/* if $m.goHasStrTypeInParams */}}
+{{ end }}{{/* end string ext methods  */}}
 
 // methods
 {{ range $j, $m := $c.FilteredMethods -}}

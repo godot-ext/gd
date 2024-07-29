@@ -11,6 +11,7 @@ import (
 
 	"github.com/godot-go/godot-go/cmd/extensionapiparser"
 	"github.com/godot-go/godot-go/cmd/gdextensionparser/clang"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 	"github.com/iancoleman/strcase"
 )
 
@@ -67,10 +68,10 @@ func GenerateBuiltinClasses(projectPath string, extensionApi extensionapiparser.
 			"typeHasPtr":               typeHasPtr,
 			"goEncoder":                goEncoder,
 			"goEncodeIsReference":      goEncodeIsReference,
-			"goHasStrTypeInParams":     goHasStrTypeInParams,
-			"goArgumentTypeExt":        goArgumentTypeExt,
-			"goArgumentNameExt":        goArgumentNameExt,
-			"goIsStringType":           goIsStringType,
+			"goHasStrTypeInParams":     common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":        common.GoArgumentTypeExt,
+			"goArgumentNameExt":        common.GoArgumentNameExt,
+			"goIsStringType":           common.GoIsStringType,
 		}).
 		Parse(builtinClassesText)
 

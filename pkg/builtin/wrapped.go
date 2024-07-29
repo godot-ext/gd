@@ -1,6 +1,7 @@
 package builtin
 
 import (
+	"reflect"
 	"unsafe"
 
 	. "github.com/godot-go/godot-go/pkg/ffi"
@@ -42,6 +43,18 @@ func (w *WrappedImpl) IsNil() bool {
 }
 
 func (w *WrappedImpl) Destroy() {
+}
+
+func ObjectCastToGeneric[T any](obj Object) T {
+	var t T
+	tType := reflect.TypeOf((*T)(nil)).Elem()
+	tTypeName := tType.Name()
+	castedObj := ObjectCastTo(obj, tTypeName)
+
+	if castedObj != nil {
+		return castedObj.(T)
+	}
+	return t
 }
 
 func ObjectCastTo(obj Object, className string) Object {

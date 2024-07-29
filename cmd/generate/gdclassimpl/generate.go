@@ -54,6 +54,7 @@ func GenerateClasses(projectPath string, extensionApi extensionapiparser.Extensi
 			"goArgumentTypeExt":    common.GoArgumentTypeExt,
 			"goArgumentNameExt":    common.GoArgumentNameExt,
 			"goIsStringType":       common.GoIsStringType,
+			"goStringConverter":    common.GoStringConverter,
 		}).
 		Parse(classesText)
 

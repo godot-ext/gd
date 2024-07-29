@@ -8,19 +8,27 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
+func isStringType(a extensionapiparser.Argument) bool {
+	switch a.Type {
+	case "String", "StringName", "NodePath":
+		return true
+	}
+	return false
+}
+
 func GoHasStrTypeInParams(args []extensionapiparser.Argument) bool {
 	for _, a := range args {
-		if a.IsStringType() {
+		if isStringType(a) {
 			return true
 		}
 	}
 	return false
 }
 func GoIsStringType(arg extensionapiparser.Argument) bool {
-	return arg.IsStringType()
+	return isStringType(arg)
 }
 func GoArgumentNameExt(t extensionapiparser.Argument) string {
-	if t.Type == "String" || t.Type == "StringName" {
+	if t.Type == "String" || t.Type == "StringName" || t.Type == "NodePath" {
 		return "str_" + goArgumentName(t.Name)
 	} else {
 		return goArgumentName(t.Name)
@@ -28,11 +36,20 @@ func GoArgumentNameExt(t extensionapiparser.Argument) string {
 }
 
 func GoArgumentTypeExt(t extensionapiparser.Argument) string {
-	if t.Type == "String" || t.Type == "StringName" {
+	if t.Type == "String" || t.Type == "StringName" || t.Type == "NodePath" {
 		return "string"
 	} else {
 		return goArgumentType(t.Type)
 	}
+}
+
+func GoStringConverter(t extensionapiparser.Argument) string {
+	if t.Type == "String" {
+		return "NewStringWithLatin1Chars"
+	} else if t.Type == "StringName" {
+		return "NewStringNameWithLatin1Chars"
+	}
+	return "NewNodePathWithLatin1Chars"
 }
 
 func goArgumentName(t string) string {

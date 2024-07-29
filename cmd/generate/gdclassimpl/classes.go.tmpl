@@ -176,7 +176,7 @@ func (cx *{{ goClassStructName $c.Name }}) {{ goMethodName $m.Name }}(
  * is_vararg = {{ $m.IsVararg }}, is_static = {{ $m.IsStatic }}, is_virtual = {{ $m.IsVirtual }},
  * return_type = {{ $m.ReturnValue.Type }}, return_meta = {{ $m.ReturnValue.Meta }}
  */
-func (cx *{{ goClassStructName $c.Name }}) {{ goMethodName $m.Name }}(
+func (cx *{{ goClassStructName $c.Name }}) {{ goMethodName $m.Name }}_StrExt (
 {{range $k, $a := $m.Arguments -}}
 {{ $fnArgType := goArgumentTypeExt $a -}}
 {{ goArgumentNameExt $a }} {{ if $view.IsRefcountedClassName $fnArgType }}Ref{{ $fnArgType }}{{ else }}{{ $fnArgType }}{{ end -}},
@@ -187,11 +187,10 @@ func (cx *{{ goClassStructName $c.Name }}) {{ goMethodName $m.Name }}(
 	// convert string arguments to godot string
     {{- range $k, $arg := $m.Arguments}}
     {{ if goIsStringType $arg }}
-    {{goArgumentName $arg.Name}} := NewStringWithLatin1Chars({{ goArgumentNameExt $arg }})
+    {{goArgumentName $arg.Name}} := {{goStringConverter $arg}} ({{ goArgumentNameExt $arg }})
 	defer {{goArgumentName $arg.Name}}.Destroy()
 	{{ end -}}
 	{{end -}}
-
 
     {{/* TODO: refactor for static instantiation */}}
 	className := NewStringNameWithLatin1Chars("{{ $c.Name }}")

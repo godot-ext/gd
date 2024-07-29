@@ -72,6 +72,7 @@ func GenerateBuiltinClasses(projectPath string, extensionApi extensionapiparser.
 			"goArgumentTypeExt":        common.GoArgumentTypeExt,
 			"goArgumentNameExt":        common.GoArgumentNameExt,
 			"goIsStringType":           common.GoIsStringType,
+			"goStringConverter":        common.GoStringConverter,
 		}).
 		Parse(builtinClassesText)
 
@@ -157,6 +158,11 @@ func GenerateClassInterfaces(projectPath string, extensionApi extensionapiparser
 			"goReturnType":         goReturnType,
 			"goClassInterfaceName": goClassInterfaceName,
 			"coalesce":             coalesce,
+			"goHasStrTypeInParams": common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":    common.GoArgumentTypeExt,
+			"goArgumentNameExt":    common.GoArgumentNameExt,
+			"goIsStringType":       common.GoIsStringType,
+			"goStringConverter":    common.GoStringConverter,
 		}).
 		Parse(classesInterfacesText)
 

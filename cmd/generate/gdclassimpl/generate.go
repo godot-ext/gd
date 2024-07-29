@@ -10,6 +10,7 @@ import (
 	_ "embed"
 
 	"github.com/godot-go/godot-go/cmd/extensionapiparser"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 )
 
 var (
@@ -49,6 +50,10 @@ func GenerateClasses(projectPath string, extensionApi extensionapiparser.Extensi
 			"goEncoder":            goEncoder,
 			"goEncodeIsReference":  goEncodeIsReference,
 			"coalesce":             coalesce,
+			"goHasStrTypeInParams": common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":    common.GoArgumentTypeExt,
+			"goArgumentNameExt":    common.GoArgumentNameExt,
+			"goIsStringType":       common.GoIsStringType,
 		}).
 		Parse(classesText)
 

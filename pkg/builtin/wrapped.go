@@ -45,6 +45,10 @@ func (c *WrappedImpl) checkInit(realInstance interface{}) {
 	}
 }
 
+func (pself *WrappedImpl) GetSignals() []string {
+	return []string{}
+}
+
 func (c *WrappedImpl) GetClassName(realInstance interface{}) string {
 	c.checkInit(realInstance)
 	return c._className

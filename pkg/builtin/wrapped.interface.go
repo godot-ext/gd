@@ -23,6 +23,7 @@ type Wrapped interface {
 	AsGDExtensionConstObjectPtr() GDExtensionConstObjectPtr
 	AsGDExtensionTypePtr() GDExtensionTypePtr
 	AsGDExtensionConstTypePtr() GDExtensionConstTypePtr
+	GetSignals() []string
 }
 
 func GetClassName(in Wrapped) string {

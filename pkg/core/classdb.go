@@ -369,6 +369,15 @@ func classDBBindIntegerConstant(t GDClass, p_enum_name, p_constant_name string, 
 		bitfield,
 	)
 }
+func AutoRegisterClassDB[T Object](in T) {
+	ClassDBRegisterClass(in, []GDExtensionPropertyInfo{}, nil, func(t GDClass) {
+		autoRegisterFunc2ClassDB[T](t)
+		signals := in.GetSignals()
+		for _, signal := range signals {
+			ClassDBAddSignal(t, signal)
+		}
+	})
+}
 
 func ClassDBRegisterClass[T Object](
 	in T,

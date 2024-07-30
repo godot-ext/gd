@@ -28,7 +28,7 @@ func contains(s []string, e string) bool {
 	return false
 }
 
-func ClassDBAutoRegister[T GDClass](t GDClass) {
+func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
 	ptrType := reflect.TypeOf((*T)(nil))
 	classType := ptrType.Elem()
 	if classType.Kind() == reflect.Ptr {
@@ -66,6 +66,7 @@ func ClassDBAutoRegister[T GDClass](t GDClass) {
 			}
 		}
 	}
+
 }
 func convertVirtualMethodName(methodName string) string {
 	parts := strings.SplitN(methodName, "_", 3)

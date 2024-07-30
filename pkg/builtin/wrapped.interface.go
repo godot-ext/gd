@@ -17,10 +17,17 @@ type Wrapped interface {
 	HasDestructor
 	GetGodotObjectOwner() *GodotObject
 	SetGodotObjectOwner(owner *GodotObject)
-	GetClassName() string
-	GetParentClassName() string
+	GetClassName(realInstance interface{}) string
+	GetParentClassName(realInstance interface{}) string
 	AsGDExtensionObjectPtr() GDExtensionObjectPtr
 	AsGDExtensionConstObjectPtr() GDExtensionConstObjectPtr
 	AsGDExtensionTypePtr() GDExtensionTypePtr
 	AsGDExtensionConstTypePtr() GDExtensionConstTypePtr
+}
+
+func GetClassName(in Wrapped) string {
+	return in.GetClassName(in)
+}
+func GetParentClassName(in Wrapped) string {
+	return in.GetParentClassName(in)
 }

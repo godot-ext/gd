@@ -36,14 +36,6 @@ type Example struct {
 	dprop            [3]Vector2
 }
 
-func (c *Example) GetClassName() string {
-	return "Example"
-}
-
-func (c *Example) GetParentClassName() string {
-	return "Control"
-}
-
 func (e *Example) SimpleFunc() {
 	println("  Simple func called.")
 	e.EmitCustomSignal("simple_func", 3)
@@ -210,7 +202,7 @@ func (e *Example) EmitCustomSignal(name string, value int64) {
 // 	if n == nil {
 // 		log.Panic("failed to cast to cast Example to Node")
 // 	}
-// 	log.Debug("TestCastTo called", zap.Any("class", n.GetClassName()))
+// 	log.Debug("TestCastTo called", zap.Any("class", GetClassName(n)))
 // }
 
 func (e *Example) TestStatic(p_a, p_b int32) int32 {
@@ -452,8 +444,8 @@ func (e *Example) TestVectorOps() int32 {
 	arr.PushBack(30)
 	arr.PushBack(45)
 	ret := int32(0)
-	for i:=int64(0); i<arr.Size(); i++ {
-		ret += int32(arr.GetIndexed(i));
+	for i := int64(0); i < arr.Size(); i++ {
+		ret += int32(arr.GetIndexed(i))
 	}
 	return ret
 }

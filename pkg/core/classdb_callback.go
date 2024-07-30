@@ -28,7 +28,7 @@ func GoCallback_ClassCreationInfoToString(
 		// zap.Reflect("p_instance", p_instance),
 	)
 	inst := ObjectClassFromGDExtensionClassInstancePtr((GDExtensionClassInstancePtr)(p_instance))
-	className := inst.GetClassName()
+	className := GetClassName(inst)
 	instanceId := inst.GetInstanceId()
 	value := fmt.Sprintf("[ GDExtension::%s <--> Instance ID:%d ]", className, instanceId)
 	GDExtensionStringPtrWithLatin1Chars((GDExtensionStringPtr)(p_out), value)
@@ -55,7 +55,7 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 	if inst == nil {
 		log.Panic("GDExtensionClassInstancePtr cannot be null")
 	}
-	className := inst.GetClassName()
+	className := GetClassName(inst)
 	snMethodName := (*StringName)(unsafe.Pointer(pName))
 	sMethodName := snMethodName.AsString()
 	methodName := (&sMethodName).ToAscii()
@@ -94,6 +94,7 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 //
 //export GoCallback_ClassCreationInfoCreateInstance
 func GoCallback_ClassCreationInfoCreateInstance(data unsafe.Pointer) C.GDExtensionObjectPtr {
+	println("GoCallback_ClassCreationInfoCreateInstance")
 	tn := C.GoString((*C.char)(data))
 	inst := CreateGDClassInstance(tn)
 	return (C.GDExtensionObjectPtr)(unsafe.Pointer(inst.GetGodotObjectOwner()))

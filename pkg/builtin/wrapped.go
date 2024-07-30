@@ -2,6 +2,7 @@ package builtin
 
 import (
 	"reflect"
+	"strings"
 	"unsafe"
 
 	. "github.com/godot-go/godot-go/pkg/ffi"
@@ -11,7 +12,47 @@ import (
 
 type WrappedImpl struct {
 	// Must be public but you should not touch this.
-	Owner *GodotObject
+	Owner            *GodotObject
+	_className       string
+	_parentClassName string
+}
+
+func (c *WrappedImpl) checkInit(realInstance interface{}) {
+	if c._className != "" {
+		return
+	}
+	classType := reflect.TypeOf(realInstance)
+	if classType.Kind() == reflect.Ptr {
+		classType = classType.Elem()
+	}
+
+	vf := reflect.VisibleFields(classType)
+	if len(vf) == 0 {
+		log.Panic("Missing GDExtensionClass interface: no visible struct fields " + classType.Name())
+	}
+	inheritType := vf[0].Type
+	if inheritType == nil {
+		log.Panic("Missing GDExtensionClass interface: inherits type nil")
+	}
+
+	c._className = classType.Name()
+	if strings.HasSuffix(c._className, "Impl") {
+		c._className = c._className[:len(c._className)-4]
+	}
+	c._parentClassName = inheritType.Name()
+	if len(c._parentClassName) > 4 {
+		c._parentClassName = c._parentClassName[:len(c._parentClassName)-4]
+	}
+}
+
+func (c *WrappedImpl) GetClassName(realInstance interface{}) string {
+	c.checkInit(realInstance)
+	return c._className
+}
+
+func (c *WrappedImpl) GetParentClassName(realInstance interface{}) string {
+	c.checkInit(realInstance)
+	return c._parentClassName
 }
 
 func (w *WrappedImpl) GetGodotObjectOwner() *GodotObject {
@@ -65,7 +106,7 @@ func ObjectCastTo(obj Object, className string) Object {
 	defer gdStrCn.Destroy()
 	log.Info("ObjectCastTo called",
 		zap.String("class", gdStrCn.ToUtf8()),
-		zap.String("className", obj.GetClassName()),
+		zap.String("className", GetClassName(obj)),
 		zap.String("otherClassName", className),
 	)
 	owner := obj.GetGodotObjectOwner()
@@ -97,7 +138,7 @@ func ObjectCastTo(obj Object, className string) Object {
 		FFI.Token,
 		&cbs)
 	wci := (*WrappedClassInstance)(inst)
-	wrapperClassName := wci.Instance.GetClassName()
+	wrapperClassName := GetClassName(wci.Instance)
 	gdStrClassName := wci.Instance.GetClass()
 	defer gdStrClassName.Destroy()
 	log.Info("ObjectCastTo casted",

@@ -68,7 +68,7 @@ func GetObjectInstanceBinding(engineObject *GodotObject) Object {
 		log.Panic("unable to get instance")
 		return nil
 	}
-	wrapperClassName := (*instPtr).GetClassName()
+	wrapperClassName := GetClassName(*instPtr)
 	gdStrClassName := (*instPtr).GetClass()
 	defer gdStrClassName.Destroy()
 	log.Info("GetObjectInstanceBinding casted",

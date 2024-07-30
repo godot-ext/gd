@@ -56,7 +56,7 @@ func CreateGDClassInstance(tn string) GDClass {
 	if owner == nil {
 		log.Panic("owner is nil", zap.String("type_name", tn))
 	}
-
+	// TODO(@tanjp): auto bind the properties
 	// create GDClass
 	reflectedInst := reflect.New(ci.ClassType)
 
@@ -85,6 +85,7 @@ func CreateGDClassInstance(tn string) GDClass {
 		zap.String("object", fmt.Sprintf("%p", object)),
 		zap.String("inst.GetGodotObjectOwner", fmt.Sprintf("%p", inst.GetGodotObjectOwner())),
 	)
+	println("")
 
 	return inst
 }

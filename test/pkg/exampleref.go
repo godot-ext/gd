@@ -16,14 +16,6 @@ type ExampleRef struct {
 	Id int32
 }
 
-func (c *ExampleRef) GetClassName() string {
-	return "ExampleRef"
-}
-
-func (c *ExampleRef) GetParentClassName() string {
-	return "RefCounted"
-}
-
 func (e *ExampleRef) SetId(id int32) {
 	e.Id = id
 }

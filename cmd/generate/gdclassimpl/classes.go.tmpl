@@ -52,14 +52,7 @@ func New{{ $c.Name }}WithGodotOwnerObject(owner *GodotObject) {{ if $view.IsRefc
 
 {{ if $c.Methods -}}
 
-// section: methods
-func (cx *{{ goClassStructName $c.Name }}) GetClassName() string {
-	return "{{ $c.Name }}"
-}
-
-func (cx *{{ goClassStructName $c.Name }}) GetParentClassName() string {
-	return "{{ $c.Inherits }}"
-}
+// section: Methods
 
 {{ range $j, $m := $c.Methods -}}
 {{ $fnReturnType := goReturnType (coalesce $m.ReturnValue.Meta $m.ReturnValue.Type) }}

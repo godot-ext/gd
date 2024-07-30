@@ -192,7 +192,7 @@ func reflectFuncCallArgsFromGDExtensionConstVariantPtrSliceArgs(reciever GDClass
 				gdsClass := obj.GetClass()
 				className := gdsClass.ToUtf8()
 				log.Debug("found object arg",
-					zap.String("class", obj.GetClassName()),
+					zap.String("class", GetClassName(obj)),
 					zap.String("class from gd", className),
 				)
 				gdObjPtr := obj.AsGDExtensionConstObjectPtr()

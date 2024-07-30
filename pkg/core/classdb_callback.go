@@ -83,6 +83,9 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 		(*GDExtensionConstTypePtr)(unsafe.Pointer(p_args)),
 		len(mb.MethodMetadata.GoArgumentTypes),
 	)
+	if methodName == "_ready" {
+		autoBindFields(inst)
+	}
 	mb.Ptrcall(
 		inst,
 		args,

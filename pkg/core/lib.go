@@ -85,21 +85,24 @@ func CreateGDClassInstance(tn string) GDClass {
 		zap.String("inst.GetGodotObjectOwner", fmt.Sprintf("%p", inst.GetGodotObjectOwner())),
 	)
 
-	// TODO(tanjp): auto bind the properties
-	// auto bind fields
-	if inst.(Node) != nil && false {
-		fieldsWithTag := getFieldsWithTag(inst, "godot")
-		for fieldName, field := range fieldsWithTag {
-			fmt.Printf("getFieldsWithTag: %s, Type: %s Tag: %s\n", fieldName, field.Type.Name(), field.Tag.Get("godot"))
-			nodeName := field.Tag.Get("godot")
-			node := inst.(Node).GetNode_StrExt(nodeName)
-			objValue := ObjectCastTo(node, field.Type.Name())
-			setFieldValue(inst, fieldName, objValue)
-		}
-	}
 	return inst
 }
 
+// auto bind fields
+func autoBindFields(inst GDClass) {
+	if inst.(Node) != nil {
+		fieldsWithTag := getFieldsWithTag(inst, "godot")
+		for fieldName, field := range fieldsWithTag {
+			nodeName := field.Tag.Get("godot")
+			node := inst.(Node).GetNode_StrExt(nodeName)
+			objValue := ObjectCastTo(node, field.Type.Name())
+			err := setFieldValue(inst, fieldName, objValue)
+			if err != nil {
+				log.Error("setFieldValue failed" + err.Error())
+			}
+		}
+	}
+}
 func getFieldsWithTag(structType interface{}, tagName string) map[string]reflect.StructField {
 	t := reflect.TypeOf(structType)
 	if t.Kind() == reflect.Ptr {
@@ -132,12 +135,7 @@ func setFieldValue(structPtr interface{}, fieldName string, value interface{}) e
 	if !field.CanSet() {
 		return fmt.Errorf("cannot set field: %s", fieldName)
 	}
-
 	val := reflect.ValueOf(value)
-	if field.Type() != val.Type() {
-		return fmt.Errorf("provided value type does not match field type")
-	}
-
 	field.Set(val)
 	return nil
 }

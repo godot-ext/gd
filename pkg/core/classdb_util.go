@@ -29,6 +29,7 @@ func contains(s []string, e string) bool {
 }
 
 func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
+	// only register the methods that are defined in the current class
 	ptrType := reflect.TypeOf((*T)(nil))
 	classType := ptrType.Elem()
 	if classType.Kind() == reflect.Ptr {
@@ -43,6 +44,7 @@ func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
 		}
 	}
 
+	// TODO(tanjp) use the correct way to get the mothods by reflection
 	curMethods := getMethods(classType)
 	var embeddedMethods []string
 	for _, t := range embeddedTypes {
@@ -52,7 +54,7 @@ func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
 		}
 	}
 	for _, iMethod := range curMethods {
-		if !contains(embeddedMethods, iMethod) {
+		if !contains(embeddedMethods, iMethod) || iMethod == "V_ready" {
 			methodName := iMethod
 
 			if strings.HasPrefix(methodName, "V_") {
@@ -69,14 +71,7 @@ func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
 
 }
 func convertVirtualMethodName(methodName string) string {
-	parts := strings.SplitN(methodName, "_", 3)
-	if len(parts) != 3 {
-		return ""
-	}
-	if len(parts[1]) > 2 && strings.HasPrefix(parts[1], "On") {
-		parts[1] = parts[1][2:]
-	}
-	return "_on_" + parts[2] + "_" + strings.ToLower(parts[1])
+	return methodName[1:]
 }
 
 func convertMethodName(methodName string) string {

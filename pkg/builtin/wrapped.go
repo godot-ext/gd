@@ -45,6 +45,9 @@ func (c *WrappedImpl) checkInit(realInstance interface{}) {
 	}
 }
 
+func (pself *WrappedImpl) V_ready() {
+}
+
 func (pself *WrappedImpl) GetSignals() []string {
 	return []string{}
 }

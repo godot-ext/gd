@@ -377,7 +377,6 @@ func ClassDBRegisterClass[T Object](
 	bindMethodsFunc func(t GDClass),
 ) {
 	inst := (GDClass)(in)
-	// TODO(tanjp) auto implment GetClassName
 	// Register this class within our plugin
 	className := GetClassName(inst)
 	parentName := GetParentClassName(inst)

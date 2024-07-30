@@ -56,7 +56,6 @@ func CreateGDClassInstance(tn string) GDClass {
 	if owner == nil {
 		log.Panic("owner is nil", zap.String("type_name", tn))
 	}
-	// TODO(@tanjp): auto bind the properties
 	// create GDClass
 	reflectedInst := reflect.New(ci.ClassType)
 
@@ -85,7 +84,65 @@ func CreateGDClassInstance(tn string) GDClass {
 		zap.String("object", fmt.Sprintf("%p", object)),
 		zap.String("inst.GetGodotObjectOwner", fmt.Sprintf("%p", inst.GetGodotObjectOwner())),
 	)
-	println("")
 
+	// TODO(tanjp): auto bind the properties
+	// auto bind fields
+	if inst.(Node) != nil && false {
+		fieldsWithTag := getFieldsWithTag(inst, "godot")
+		for fieldName, field := range fieldsWithTag {
+			fmt.Printf("getFieldsWithTag: %s, Type: %s Tag: %s\n", fieldName, field.Type.Name(), field.Tag.Get("godot"))
+			nodeName := field.Tag.Get("godot")
+			node := inst.(Node).GetNode_StrExt(nodeName)
+			objValue := ObjectCastTo(node, field.Type.Name())
+			setFieldValue(inst, fieldName, objValue)
+		}
+	}
 	return inst
+}
+
+func getFieldsWithTag(structType interface{}, tagName string) map[string]reflect.StructField {
+	t := reflect.TypeOf(structType)
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+	}
+
+	fieldsWithTag := make(map[string]reflect.StructField)
+
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		tag := field.Tag.Get(tagName)
+		if tag != "" {
+			fieldsWithTag[field.Name] = field
+		}
+	}
+
+	return fieldsWithTag
+}
+func setFieldValue(structPtr interface{}, fieldName string, value interface{}) error {
+	v := reflect.ValueOf(structPtr)
+	if v.Kind() != reflect.Ptr || v.Elem().Kind() != reflect.Struct {
+		return fmt.Errorf("expected a pointer to a struct")
+	}
+
+	v = v.Elem()
+	field := v.FieldByName(fieldName)
+	if !field.IsValid() {
+		return fmt.Errorf("no such field: %s", fieldName)
+	}
+	if !field.CanSet() {
+		return fmt.Errorf("cannot set field: %s", fieldName)
+	}
+
+	val := reflect.ValueOf(value)
+	if field.Type() != val.Type() {
+		return fmt.Errorf("provided value type does not match field type")
+	}
+
+	field.Set(val)
+	return nil
+}
+
+func GetNode[T any](cx Node, str_path string) T {
+	node := cx.GetNode_StrExt(str_path)
+	return ObjectCastToGeneric[T](node)
 }

@@ -94,7 +94,6 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 //
 //export GoCallback_ClassCreationInfoCreateInstance
 func GoCallback_ClassCreationInfoCreateInstance(data unsafe.Pointer) C.GDExtensionObjectPtr {
-	println("GoCallback_ClassCreationInfoCreateInstance")
 	tn := C.GoString((*C.char)(data))
 	inst := CreateGDClassInstance(tn)
 	return (C.GDExtensionObjectPtr)(unsafe.Pointer(inst.GetGodotObjectOwner()))

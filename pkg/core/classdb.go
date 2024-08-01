@@ -374,6 +374,7 @@ func AutoRegisterClassDB[T Object]() {
 	val := reflect.New(reflect.TypeOf(zero).Elem()).Interface().(T)
 	ClassDBRegisterClass(val, []GDExtensionPropertyInfo{}, nil, func(t GDClass) {
 		autoRegisterFunc2ClassDB[T](t)
+		val.RegisterClassDB()
 		signals := val.GetSignals()
 		for _, signal := range signals {
 			ClassDBAddSignal(t, signal)

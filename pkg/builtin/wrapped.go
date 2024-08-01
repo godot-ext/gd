@@ -48,6 +48,12 @@ func (c *WrappedImpl) checkInit(realInstance interface{}) {
 func (pself *WrappedImpl) V_ready() {
 }
 
+func (pself *WrappedImpl) InitFieldsInternal() {
+}
+
+func (pself *WrappedImpl) RegisterClassDB() {
+}
+
 func (pself *WrappedImpl) GetSignals() []string {
 	return []string{}
 }

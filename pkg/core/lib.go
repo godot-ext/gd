@@ -91,9 +91,10 @@ func CreateGDClassInstance(tn string) GDClass {
 // auto bind fields
 func autoBindFields(inst GDClass) {
 	if inst.(Node) != nil {
-		fieldsWithTag := getFieldsWithTag(inst, "godot")
+		// bind fields with tag "gdbind"
+		fieldsWithTag := getFieldsWithTag(inst, "gdbind")
 		for fieldName, field := range fieldsWithTag {
-			nodeName := field.Tag.Get("godot")
+			nodeName := field.Tag.Get("gdbind")
 			node := inst.(Node).GetNode_StrExt(nodeName)
 			objValue := ObjectCastTo(node, field.Type.Name())
 			err := setFieldValue(inst, fieldName, objValue)
@@ -101,6 +102,8 @@ func autoBindFields(inst GDClass) {
 				log.Error("setFieldValue failed" + err.Error())
 			}
 		}
+
+		// bind fields with tag "gdexport" // TODO(tanjp)
 	}
 }
 func getFieldsWithTag(structType interface{}, tagName string) map[string]reflect.StructField {

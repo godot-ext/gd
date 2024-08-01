@@ -59,11 +59,11 @@ func autoRegisterFunc2ClassDB[T GDClass](t GDClass) {
 
 			if strings.HasPrefix(methodName, "V_") {
 				virtualName := convertVirtualMethodName(methodName)
-				//println("Registering virtual method ", methodName, "=>", virtualName)
+				println("Registering virtual method ", methodName, "=>", virtualName)
 				ClassDBBindMethodVirtual(t, methodName, virtualName, nil, nil)
 			} else {
 				cFuncName := convertMethodName(methodName)
-				//println("Registering method", methodName, "=>", cFuncName)
+				println("Registering method", methodName, "=>", cFuncName)
 				ClassDBBindMethod(t, methodName, cFuncName, nil, nil)
 			}
 		}

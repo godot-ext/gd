@@ -10,6 +10,7 @@ import (
 	_ "embed"
 
 	"github.com/godot-go/godot-go/cmd/extensionapiparser"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 )
 
 var (
@@ -58,6 +59,10 @@ func GenerateClassConstants(projectPath string, extensionApi extensionapiparser.
 			"goClassStructName":    goClassStructName,
 			"goClassInterfaceName": goClassInterfaceName,
 			"coalesce":             coalesce,
+			"goHasStrTypeInParams": common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":    common.GoArgumentTypeExt,
+			"goArgumentNameExt":    common.GoArgumentNameExt,
+			"goIsStringType":       common.GoIsStringType,
 		}).
 		Parse(classesConstantsText)
 

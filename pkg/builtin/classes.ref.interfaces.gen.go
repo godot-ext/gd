@@ -192,6 +192,10 @@ type RefAudioEffectFilter interface {
 	Ref
 	TypedPtr() AudioEffectFilter
 }
+type RefAudioEffectHardLimiter interface {
+	Ref
+	TypedPtr() AudioEffectHardLimiter
+}
 type RefAudioEffectHighPassFilter interface {
 	Ref
 	TypedPtr() AudioEffectHighPassFilter
@@ -252,6 +256,14 @@ type RefAudioEffectStereoEnhance interface {
 	Ref
 	TypedPtr() AudioEffectStereoEnhance
 }
+type RefAudioSample interface {
+	Ref
+	TypedPtr() AudioSample
+}
+type RefAudioSamplePlayback interface {
+	Ref
+	TypedPtr() AudioSamplePlayback
+}
 type RefAudioStream interface {
 	Ref
 	TypedPtr() AudioStream
@@ -263,6 +275,10 @@ type RefAudioStreamGenerator interface {
 type RefAudioStreamGeneratorPlayback interface {
 	Ref
 	TypedPtr() AudioStreamGeneratorPlayback
+}
+type RefAudioStreamInteractive interface {
+	Ref
+	TypedPtr() AudioStreamInteractive
 }
 type RefAudioStreamMP3 interface {
 	Ref
@@ -280,9 +296,17 @@ type RefAudioStreamPlayback interface {
 	Ref
 	TypedPtr() AudioStreamPlayback
 }
+type RefAudioStreamPlaybackInteractive interface {
+	Ref
+	TypedPtr() AudioStreamPlaybackInteractive
+}
 type RefAudioStreamPlaybackOggVorbis interface {
 	Ref
 	TypedPtr() AudioStreamPlaybackOggVorbis
+}
+type RefAudioStreamPlaybackPlaylist interface {
+	Ref
+	TypedPtr() AudioStreamPlaybackPlaylist
 }
 type RefAudioStreamPlaybackPolyphonic interface {
 	Ref
@@ -292,6 +316,14 @@ type RefAudioStreamPlaybackResampled interface {
 	Ref
 	TypedPtr() AudioStreamPlaybackResampled
 }
+type RefAudioStreamPlaybackSynchronized interface {
+	Ref
+	TypedPtr() AudioStreamPlaybackSynchronized
+}
+type RefAudioStreamPlaylist interface {
+	Ref
+	TypedPtr() AudioStreamPlaylist
+}
 type RefAudioStreamPolyphonic interface {
 	Ref
 	TypedPtr() AudioStreamPolyphonic
@@ -299,6 +331,10 @@ type RefAudioStreamPolyphonic interface {
 type RefAudioStreamRandomizer interface {
 	Ref
 	TypedPtr() AudioStreamRandomizer
+}
+type RefAudioStreamSynchronized interface {
+	Ref
+	TypedPtr() AudioStreamSynchronized
 }
 type RefAudioStreamWAV interface {
 	Ref
@@ -387,6 +423,14 @@ type RefCircleShape2D interface {
 type RefCodeHighlighter interface {
 	Ref
 	TypedPtr() CodeHighlighter
+}
+type RefCompositor interface {
+	Ref
+	TypedPtr() Compositor
+}
+type RefCompositorEffect interface {
+	Ref
+	TypedPtr() CompositorEffect
 }
 type RefCompressedCubemap interface {
 	Ref
@@ -584,13 +628,17 @@ type RefEditorSceneFormatImporterBlend interface {
 	Ref
 	TypedPtr() EditorSceneFormatImporterBlend
 }
-type RefEditorSceneFormatImporterFBX interface {
+type RefEditorSceneFormatImporterFBX2GLTF interface {
 	Ref
-	TypedPtr() EditorSceneFormatImporterFBX
+	TypedPtr() EditorSceneFormatImporterFBX2GLTF
 }
 type RefEditorSceneFormatImporterGLTF interface {
 	Ref
 	TypedPtr() EditorSceneFormatImporterGLTF
+}
+type RefEditorSceneFormatImporterUFBX interface {
+	Ref
+	TypedPtr() EditorSceneFormatImporterUFBX
 }
 type RefEditorScenePostImport interface {
 	Ref
@@ -631,6 +679,14 @@ type RefEnvironment interface {
 type RefExpression interface {
 	Ref
 	TypedPtr() Expression
+}
+type RefFBXDocument interface {
+	Ref
+	TypedPtr() FBXDocument
+}
+type RefFBXState interface {
+	Ref
+	TypedPtr() FBXState
 }
 type RefFastNoiseLite interface {
 	Ref
@@ -1336,6 +1392,26 @@ type RefRenderSceneBuffersRD interface {
 	Ref
 	TypedPtr() RenderSceneBuffersRD
 }
+type RefRenderingNativeSurface interface {
+	Ref
+	TypedPtr() RenderingNativeSurface
+}
+type RefRenderingNativeSurfaceApple interface {
+	Ref
+	TypedPtr() RenderingNativeSurfaceApple
+}
+type RefRenderingNativeSurfaceVulkan interface {
+	Ref
+	TypedPtr() RenderingNativeSurfaceVulkan
+}
+type RefRenderingNativeSurfaceWayland interface {
+	Ref
+	TypedPtr() RenderingNativeSurfaceWayland
+}
+type RefRenderingNativeSurfaceX11 interface {
+	Ref
+	TypedPtr() RenderingNativeSurfaceX11
+}
 type RefResource interface {
 	Ref
 	TypedPtr() Resource
@@ -1888,6 +1964,10 @@ type RefVisualShaderNodeFloatParameter interface {
 	Ref
 	TypedPtr() VisualShaderNodeFloatParameter
 }
+type RefVisualShaderNodeFrame interface {
+	Ref
+	TypedPtr() VisualShaderNodeFrame
+}
 type RefVisualShaderNodeFresnel interface {
 	Ref
 	TypedPtr() VisualShaderNodeFresnel
@@ -2011,6 +2091,10 @@ type RefVisualShaderNodeRandomRange interface {
 type RefVisualShaderNodeRemap interface {
 	Ref
 	TypedPtr() VisualShaderNodeRemap
+}
+type RefVisualShaderNodeReroute interface {
+	Ref
+	TypedPtr() VisualShaderNodeReroute
 }
 type RefVisualShaderNodeResizableBase interface {
 	Ref
@@ -2280,6 +2364,22 @@ type RefXMLParser interface {
 	Ref
 	TypedPtr() XMLParser
 }
+type RefXRBodyTracker interface {
+	Ref
+	TypedPtr() XRBodyTracker
+}
+type RefXRControllerTracker interface {
+	Ref
+	TypedPtr() XRControllerTracker
+}
+type RefXRFaceTracker interface {
+	Ref
+	TypedPtr() XRFaceTracker
+}
+type RefXRHandTracker interface {
+	Ref
+	TypedPtr() XRHandTracker
+}
 type RefXRInterface interface {
 	Ref
 	TypedPtr() XRInterface
@@ -2295,6 +2395,10 @@ type RefXRPose interface {
 type RefXRPositionalTracker interface {
 	Ref
 	TypedPtr() XRPositionalTracker
+}
+type RefXRTracker interface {
+	Ref
+	TypedPtr() XRTracker
 }
 type RefZIPPacker interface {
 	Ref

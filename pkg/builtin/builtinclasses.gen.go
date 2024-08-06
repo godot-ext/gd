@@ -68,6 +68,7 @@ const (
 	PackedVector2ArraySize = 16
 	PackedVector3ArraySize = 16
 	PackedColorArraySize   = 16
+	PackedVector4ArraySize = 16
 )
 
 var (
@@ -104,6 +105,7 @@ var (
 	PackedVector2ArrayEncoder argumentEncoder[PackedVector2Array, PackedVector2Array]
 	PackedVector3ArrayEncoder argumentEncoder[PackedVector3Array, PackedVector3Array]
 	PackedColorArrayEncoder   argumentEncoder[PackedColorArray, PackedColorArray]
+	PackedVector4ArrayEncoder argumentEncoder[PackedVector4Array, PackedVector4Array]
 )
 
 func initBuiltinClassEncoders() {
@@ -140,6 +142,7 @@ func initBuiltinClassEncoders() {
 	PackedVector2ArrayEncoder = createBuiltinClassEncoder[PackedVector2Array](GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR2_ARRAY, PackedVector2ArraySize)
 	PackedVector3ArrayEncoder = createBuiltinClassEncoder[PackedVector3Array](GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR3_ARRAY, PackedVector3ArraySize)
 	PackedColorArrayEncoder = createBuiltinClassEncoder[PackedColorArray](GDEXTENSION_VARIANT_TYPE_PACKED_COLOR_ARRAY, PackedColorArraySize)
+	PackedVector4ArrayEncoder = createBuiltinClassEncoder[PackedVector4Array](GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR4_ARRAY, PackedVector4ArraySize)
 }
 
 // built-in classes
@@ -221,6 +224,1052 @@ func copyStringWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCon
 	}
 }
 
+//string ext methods
+
+/* CasecmpTo : casecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) CasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_casecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NocasecmpTo : nocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) NocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_nocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NaturalcasecmpTo : naturalcasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) NaturalcasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_naturalcasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NaturalnocasecmpTo : naturalnocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) NaturalnocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_naturalnocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilecasecmpTo : filecasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) FilecasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_filecasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilenocasecmpTo : filenocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) FilenocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringMethodBindings.method_filenocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* GetSlice : get_slice
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) GetSlice_StrExt(str_delimiter string, slice int64) String {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringMethodBindings.method_get_slice
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = Int64Encoder.EncodeTypePtr(slice)
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* GetSliceCount : get_slice_count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) GetSliceCount_StrExt(str_delimiter string) int64 {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+	mb := globalStringMethodBindings.method_get_slice_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Find : find
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Find_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_find
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Findn : findn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Findn_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_findn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Count : count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Count_StrExt(str_what string, from int64, to int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	args[2] = Int64Encoder.EncodeTypePtr(to)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Countn : countn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Countn_StrExt(str_what string, from int64, to int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_countn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	args[2] = Int64Encoder.EncodeTypePtr(to)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfind : rfind
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Rfind_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_rfind
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfindn : rfindn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Rfindn_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringMethodBindings.method_rfindn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Match : match
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) Match_StrExt(str_expr string) bool {
+	// convert string arguments to godot string
+
+	expr := NewStringWithLatin1Chars(str_expr)
+	defer expr.Destroy()
+	mb := globalStringMethodBindings.method_match
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&expr))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Matchn : matchn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) Matchn_StrExt(str_expr string) bool {
+	// convert string arguments to godot string
+
+	expr := NewStringWithLatin1Chars(str_expr)
+	defer expr.Destroy()
+	mb := globalStringMethodBindings.method_matchn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&expr))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* BeginsWith : begins_with
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) BeginsWith_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringMethodBindings.method_begins_with
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* EndsWith : ends_with
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) EndsWith_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringMethodBindings.method_ends_with
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* IsSubsequenceOf : is_subsequence_of
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) IsSubsequenceOf_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringMethodBindings.method_is_subsequence_of
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* IsSubsequenceOfn : is_subsequence_ofn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) IsSubsequenceOfn_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringMethodBindings.method_is_subsequence_ofn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Similarity : similarity
+ * is_vararg = false, is_static = false
+ * goReturnType(float) -> float32
+ */
+func (cx *String) Similarity_StrExt(str_text string) float32 {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringMethodBindings.method_similarity
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[float32](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Format : format
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Format_StrExt(values Variant, str_placeholder string) String {
+	// convert string arguments to godot string
+
+	placeholder := NewStringWithLatin1Chars(str_placeholder)
+	defer placeholder.Destroy()
+	mb := globalStringMethodBindings.method_format
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&values))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&placeholder))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Replace : replace
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Replace_StrExt(str_what string, str_forwhat string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	forwhat := NewStringWithLatin1Chars(str_forwhat)
+	defer forwhat.Destroy()
+	mb := globalStringMethodBindings.method_replace
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&forwhat))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Replacen : replacen
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Replacen_StrExt(str_what string, str_forwhat string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	forwhat := NewStringWithLatin1Chars(str_forwhat)
+	defer forwhat.Destroy()
+	mb := globalStringMethodBindings.method_replacen
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&forwhat))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Insert : insert
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Insert_StrExt(position int64, str_what string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringMethodBindings.method_insert
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(position)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Split : split
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedStringArray) -> PackedStringArray
+ */
+func (cx *String) Split_StrExt(str_delimiter string, allow_empty bool, maxsplit int64) PackedStringArray {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringMethodBindings.method_split
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	args[2] = Int64Encoder.EncodeTypePtr(maxsplit)
+
+	ret := CallBuiltinMethodPtrRet[PackedStringArray](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rsplit : rsplit
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedStringArray) -> PackedStringArray
+ */
+func (cx *String) Rsplit_StrExt(str_delimiter string, allow_empty bool, maxsplit int64) PackedStringArray {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringMethodBindings.method_rsplit
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	args[2] = Int64Encoder.EncodeTypePtr(maxsplit)
+
+	ret := CallBuiltinMethodPtrRet[PackedStringArray](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* SplitFloats : split_floats
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedFloat64Array) -> PackedFloat64Array
+ */
+func (cx *String) SplitFloats_StrExt(str_delimiter string, allow_empty bool) PackedFloat64Array {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringMethodBindings.method_split_floats
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	ret := CallBuiltinMethodPtrRet[PackedFloat64Array](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Lstrip : lstrip
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Lstrip_StrExt(str_chars string) String {
+	// convert string arguments to godot string
+
+	chars := NewStringWithLatin1Chars(str_chars)
+	defer chars.Destroy()
+	mb := globalStringMethodBindings.method_lstrip
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&chars))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rstrip : rstrip
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Rstrip_StrExt(str_chars string) String {
+	// convert string arguments to godot string
+
+	chars := NewStringWithLatin1Chars(str_chars)
+	defer chars.Destroy()
+	mb := globalStringMethodBindings.method_rstrip
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&chars))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* PathJoin : path_join
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) PathJoin_StrExt(str_file string) String {
+	// convert string arguments to godot string
+
+	file := NewStringWithLatin1Chars(str_file)
+	defer file.Destroy()
+	mb := globalStringMethodBindings.method_path_join
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&file))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Indent : indent
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Indent_StrExt(str_prefix string) String {
+	// convert string arguments to godot string
+
+	prefix := NewStringWithLatin1Chars(str_prefix)
+	defer prefix.Destroy()
+	mb := globalStringMethodBindings.method_indent
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&prefix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Contains : contains
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) Contains_StrExt(str_what string) bool {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringMethodBindings.method_contains
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Containsn : containsn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) Containsn_StrExt(str_what string) bool {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringMethodBindings.method_containsn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Lpad : lpad
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Lpad_StrExt(min_length int64, str_character string) String {
+	// convert string arguments to godot string
+
+	character := NewStringWithLatin1Chars(str_character)
+	defer character.Destroy()
+	mb := globalStringMethodBindings.method_lpad
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min_length)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&character))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rpad : rpad
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) Rpad_StrExt(min_length int64, str_character string) String {
+	// convert string arguments to godot string
+
+	character := NewStringWithLatin1Chars(str_character)
+	defer character.Destroy()
+	mb := globalStringMethodBindings.method_rpad
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min_length)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&character))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* TrimPrefix : trim_prefix
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) TrimPrefix_StrExt(str_prefix string) String {
+	// convert string arguments to godot string
+
+	prefix := NewStringWithLatin1Chars(str_prefix)
+	defer prefix.Destroy()
+	mb := globalStringMethodBindings.method_trim_prefix
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&prefix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* TrimSuffix : trim_suffix
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *String) TrimSuffix_StrExt(str_suffix string) String {
+	// convert string arguments to godot string
+
+	suffix := NewStringWithLatin1Chars(str_suffix)
+	defer suffix.Destroy()
+	mb := globalStringMethodBindings.method_trim_suffix
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&suffix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 // methods
 
 /* CasecmpTo : casecmp_to
@@ -295,6 +1344,50 @@ func (cx *String) NaturalcasecmpTo(to String) int64 {
  */
 func (cx *String) NaturalnocasecmpTo(to String) int64 {
 	mb := globalStringMethodBindings.method_naturalnocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilecasecmpTo : filecasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) FilecasecmpTo(to String) int64 {
+	mb := globalStringMethodBindings.method_filecasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilenocasecmpTo : filenocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) FilenocasecmpTo(to String) int64 {
+	mb := globalStringMethodBindings.method_filenocasecmp_to
 	if mb == nil {
 		log.Panic("method bind cannot be nil")
 	}
@@ -447,6 +1540,30 @@ func (cx *String) Find(what String, from int64) int64 {
 	return ret
 }
 
+/* Findn : findn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *String) Findn(what String, from int64) int64 {
+	mb := globalStringMethodBindings.method_findn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Count : count
  * is_vararg = false, is_static = false
  * goReturnType(int) -> int64
@@ -493,30 +1610,6 @@ func (cx *String) Countn(what String, from int64, to int64) int64 {
 	args[1] = Int64Encoder.EncodeTypePtr(from)
 
 	args[2] = Int64Encoder.EncodeTypePtr(to)
-
-	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
-	runtime.KeepAlive(args)
-	return ret
-}
-
-/* Findn : findn
- * is_vararg = false, is_static = false
- * goReturnType(int) -> int64
- */
-func (cx *String) Findn(what String, from int64) int64 {
-	mb := globalStringMethodBindings.method_findn
-	if mb == nil {
-		log.Panic("method bind cannot be nil")
-	}
-	bx := cx.NativePtr()
-	if bx == nil {
-		log.Panic("object cannot be nil")
-	}
-	sz := 2
-	args := make([]GDExtensionTypePtr, sz, sz)
-	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
-
-	args[1] = Int64Encoder.EncodeTypePtr(from)
 
 	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -1509,6 +2602,28 @@ func (cx *String) IsEmpty() bool {
  */
 func (cx *String) Contains(what String) bool {
 	mb := globalStringMethodBindings.method_contains
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Containsn : containsn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *String) Containsn(what String) bool {
+	mb := globalStringMethodBindings.method_containsn
 	if mb == nil {
 		log.Panic("method bind cannot be nil")
 	}
@@ -2789,6 +3904,13 @@ func (cx *String) Module_PackedColorArray(right PackedColorArray) String {
 	return CallBuiltinOperatorPtr[String](globalStringMethodBindings.operator_module_PackedColorArray, lt, rt)
 }
 
+// Module_PackedVector4Array operator
+func (cx *String) Module_PackedVector4Array(right PackedVector4Array) String {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[String](globalStringMethodBindings.operator_module_PackedVector4Array, lt, rt)
+}
+
 var _ GDBuiltInClass = &Vector2{}
 
 /*
@@ -2872,6 +3994,8 @@ func copyVector2WithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCo
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -3629,7 +4753,7 @@ func (cx *Vector2) Bounce(n Vector2) Vector2 {
  * is_vararg = false, is_static = false
  * goReturnType(Vector2) -> Vector2
  */
-func (cx *Vector2) Reflect(n Vector2) Vector2 {
+func (cx *Vector2) Reflect(line Vector2) Vector2 {
 	mb := globalVector2MethodBindings.method_reflect
 	if mb == nil {
 		log.Panic("method bind cannot be nil")
@@ -3640,7 +4764,7 @@ func (cx *Vector2) Reflect(n Vector2) Vector2 {
 	}
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
-	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&n))
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&line))
 
 	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -3729,6 +4853,30 @@ func (cx *Vector2) Clamp(min Vector2, max Vector2) Vector2 {
 	return ret
 }
 
+/* Clampf : clampf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Clampf(min float32, max float32) Vector2 {
+	mb := globalVector2MethodBindings.method_clampf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(min)
+
+	args[1] = Float32Encoder.EncodeTypePtr(max)
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Snapped : snapped
  * is_vararg = false, is_static = false
  * goReturnType(Vector2) -> Vector2
@@ -3745,6 +4893,116 @@ func (cx *Vector2) Snapped(step Vector2) Vector2 {
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&step))
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Snappedf : snappedf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Snappedf(step float32) Vector2 {
+	mb := globalVector2MethodBindings.method_snappedf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(step)
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Min(with Vector2) Vector2 {
+	mb := globalVector2MethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Minf : minf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Minf(with float32) Vector2 {
+	mb := globalVector2MethodBindings.method_minf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Max(with Vector2) Vector2 {
+	mb := globalVector2MethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxf : maxf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2) -> Vector2
+ */
+func (cx *Vector2) Maxf(with float32) Vector2 {
+	mb := globalVector2MethodBindings.method_maxf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
 
 	ret := CallBuiltinMethodPtrRet[Vector2](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -4058,6 +5316,8 @@ func copyVector2iWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionC
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Aspect : aspect
@@ -4111,6 +5371,50 @@ func (cx *Vector2i) MinAxisIndex() int64 {
 	}
 
 	ret := CallBuiltinMethodPtrRet[int64](mb, bx, nil)
+	return ret
+}
+
+/* DistanceTo : distance_to
+ * is_vararg = false, is_static = false
+ * goReturnType(float) -> float32
+ */
+func (cx *Vector2i) DistanceTo(to Vector2i) float32 {
+	mb := globalVector2iMethodBindings.method_distance_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[float32](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* DistanceSquaredTo : distance_squared_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *Vector2i) DistanceSquaredTo(to Vector2i) int64 {
+	mb := globalVector2iMethodBindings.method_distance_squared_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
 	return ret
 }
 
@@ -4210,6 +5514,30 @@ func (cx *Vector2i) Clamp(min Vector2i, max Vector2i) Vector2i {
 	return ret
 }
 
+/* Clampi : clampi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Clampi(min int64, max int64) Vector2i {
+	mb := globalVector2iMethodBindings.method_clampi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min)
+
+	args[1] = Int64Encoder.EncodeTypePtr(max)
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Snapped : snapped
  * is_vararg = false, is_static = false
  * goReturnType(Vector2i) -> Vector2i
@@ -4226,6 +5554,116 @@ func (cx *Vector2i) Snapped(step Vector2i) Vector2i {
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&step))
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Snappedi : snappedi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Snappedi(step int64) Vector2i {
+	mb := globalVector2iMethodBindings.method_snappedi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(step)
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Min(with Vector2i) Vector2i {
+	mb := globalVector2iMethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Mini : mini
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Mini(with int64) Vector2i {
+	mb := globalVector2iMethodBindings.method_mini
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Max(with Vector2i) Vector2i {
+	mb := globalVector2iMethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxi : maxi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector2i) -> Vector2i
+ */
+func (cx *Vector2i) Maxi(with int64) Vector2i {
+	mb := globalVector2iMethodBindings.method_maxi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
 
 	ret := CallBuiltinMethodPtrRet[Vector2i](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -4536,6 +5974,8 @@ func copyRect2WithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCons
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -5043,6 +6483,8 @@ func copyRect2iWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCon
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* GetCenter : get_center
@@ -5483,6 +6925,8 @@ func copyVector3WithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCo
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* MinAxisIndex : min_axis_index
@@ -5827,6 +7271,30 @@ func (cx *Vector3) Clamp(min Vector3, max Vector3) Vector3 {
 	return ret
 }
 
+/* Clampf : clampf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Clampf(min float32, max float32) Vector3 {
+	mb := globalVector3MethodBindings.method_clampf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(min)
+
+	args[1] = Float32Encoder.EncodeTypePtr(max)
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Snapped : snapped
  * is_vararg = false, is_static = false
  * goReturnType(Vector3) -> Vector3
@@ -5843,6 +7311,28 @@ func (cx *Vector3) Snapped(step Vector3) Vector3 {
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&step))
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Snappedf : snappedf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Snappedf(step float32) Vector3 {
+	mb := globalVector3MethodBindings.method_snappedf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(step)
 
 	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -6369,6 +7859,94 @@ func (cx *Vector3) OctahedronEncode() Vector2 {
 	return ret
 }
 
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Min(with Vector3) Vector3 {
+	mb := globalVector3MethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Minf : minf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Minf(with float32) Vector3 {
+	mb := globalVector3MethodBindings.method_minf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Max(with Vector3) Vector3 {
+	mb := globalVector3MethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxf : maxf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3) -> Vector3
+ */
+func (cx *Vector3) Maxf(with float32) Vector3 {
+	mb := globalVector3MethodBindings.method_maxf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector3](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* OctahedronDecode : octahedron_decode
  * is_vararg = false, is_static = true
  * goReturnType(Vector3) -> Vector3
@@ -6699,6 +8277,8 @@ func copyVector3iWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionC
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* MinAxisIndex : min_axis_index
@@ -6734,6 +8314,50 @@ func (cx *Vector3i) MaxAxisIndex() int64 {
 	}
 
 	ret := CallBuiltinMethodPtrRet[int64](mb, bx, nil)
+	return ret
+}
+
+/* DistanceTo : distance_to
+ * is_vararg = false, is_static = false
+ * goReturnType(float) -> float32
+ */
+func (cx *Vector3i) DistanceTo(to Vector3i) float32 {
+	mb := globalVector3iMethodBindings.method_distance_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[float32](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* DistanceSquaredTo : distance_squared_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *Vector3i) DistanceSquaredTo(to Vector3i) int64 {
+	mb := globalVector3iMethodBindings.method_distance_squared_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
 	return ret
 }
 
@@ -6833,6 +8457,30 @@ func (cx *Vector3i) Clamp(min Vector3i, max Vector3i) Vector3i {
 	return ret
 }
 
+/* Clampi : clampi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Clampi(min int64, max int64) Vector3i {
+	mb := globalVector3iMethodBindings.method_clampi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min)
+
+	args[1] = Int64Encoder.EncodeTypePtr(max)
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Snapped : snapped
  * is_vararg = false, is_static = false
  * goReturnType(Vector3i) -> Vector3i
@@ -6849,6 +8497,116 @@ func (cx *Vector3i) Snapped(step Vector3i) Vector3i {
 	sz := 1
 	args := make([]GDExtensionTypePtr, sz, sz)
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&step))
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Snappedi : snappedi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Snappedi(step int64) Vector3i {
+	mb := globalVector3iMethodBindings.method_snappedi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(step)
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Min(with Vector3i) Vector3i {
+	mb := globalVector3iMethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Mini : mini
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Mini(with int64) Vector3i {
+	mb := globalVector3iMethodBindings.method_mini
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Max(with Vector3i) Vector3i {
+	mb := globalVector3iMethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxi : maxi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector3i) -> Vector3i
+ */
+func (cx *Vector3i) Maxi(with int64) Vector3i {
+	mb := globalVector3iMethodBindings.method_maxi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
 
 	ret := CallBuiltinMethodPtrRet[Vector3i](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -7173,6 +8931,8 @@ func copyTransform2DWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensi
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -7672,12 +9432,28 @@ func (cx *Transform2D) Multiply_int(right int64) Transform2D {
 	return CallBuiltinOperatorPtr[Transform2D](globalTransform2DMethodBindings.operator_multiply_int, lt, rt)
 }
 
+// Divide_int operator
+func (cx *Transform2D) Divide_int(right int64) Transform2D {
+	lt := cx.NativeConstPtr()
+	eRight := Int64Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Transform2D](globalTransform2DMethodBindings.operator_divide_int, lt, rt)
+}
+
 // Multiply_float operator
 func (cx *Transform2D) Multiply_float(right float32) Transform2D {
 	lt := cx.NativeConstPtr()
 	eRight := Float32Encoder.EncodeTypePtr(right)
 	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
 	return CallBuiltinOperatorPtr[Transform2D](globalTransform2DMethodBindings.operator_multiply_float, lt, rt)
+}
+
+// Divide_float operator
+func (cx *Transform2D) Divide_float(right float32) Transform2D {
+	lt := cx.NativeConstPtr()
+	eRight := Float32Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Transform2D](globalTransform2DMethodBindings.operator_divide_float, lt, rt)
 }
 
 // Multiply_Vector2 operator
@@ -7824,6 +9600,8 @@ func copyVector4WithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCo
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -8141,6 +9919,28 @@ func (cx *Vector4) Snapped(step Vector4) Vector4 {
 	return ret
 }
 
+/* Snappedf : snappedf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Snappedf(step float32) Vector4 {
+	mb := globalVector4MethodBindings.method_snappedf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(step)
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Clamp : clamp
  * is_vararg = false, is_static = false
  * goReturnType(Vector4) -> Vector4
@@ -8159,6 +9959,30 @@ func (cx *Vector4) Clamp(min Vector4, max Vector4) Vector4 {
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&min))
 
 	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&max))
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Clampf : clampf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Clampf(min float32, max float32) Vector4 {
+	mb := globalVector4MethodBindings.method_clampf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(min)
+
+	args[1] = Float32Encoder.EncodeTypePtr(max)
 
 	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -8362,6 +10186,94 @@ func (cx *Vector4) IsFinite() bool {
 	}
 
 	ret := CallBuiltinMethodPtrRet[bool](mb, bx, nil)
+	return ret
+}
+
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Min(with Vector4) Vector4 {
+	mb := globalVector4MethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Minf : minf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Minf(with float32) Vector4 {
+	mb := globalVector4MethodBindings.method_minf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Max(with Vector4) Vector4 {
+	mb := globalVector4MethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxf : maxf
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4) -> Vector4
+ */
+func (cx *Vector4) Maxf(with float32) Vector4 {
+	mb := globalVector4MethodBindings.method_maxf
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Float32Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector4](mb, bx, args...)
+	runtime.KeepAlive(args)
 	return ret
 }
 
@@ -8573,6 +10485,13 @@ func (cx *Vector4) In_Array(right Array) bool {
 	return CallBuiltinOperatorPtr[bool](globalVector4MethodBindings.operator_in_Array, lt, rt)
 }
 
+// In_PackedVector4Array operator
+func (cx *Vector4) In_PackedVector4Array(right PackedVector4Array) bool {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[bool](globalVector4MethodBindings.operator_in_PackedVector4Array, lt, rt)
+}
+
 var _ GDBuiltInClass = &Vector4i{}
 
 /*
@@ -8660,6 +10579,8 @@ func copyVector4iWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionC
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -8795,6 +10716,30 @@ func (cx *Vector4i) Clamp(min Vector4i, max Vector4i) Vector4i {
 	return ret
 }
 
+/* Clampi : clampi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Clampi(min int64, max int64) Vector4i {
+	mb := globalVector4iMethodBindings.method_clampi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min)
+
+	args[1] = Int64Encoder.EncodeTypePtr(max)
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Snapped : snapped
  * is_vararg = false, is_static = false
  * goReturnType(Vector4i) -> Vector4i
@@ -8813,6 +10758,160 @@ func (cx *Vector4i) Snapped(step Vector4i) Vector4i {
 	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&step))
 
 	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Snappedi : snappedi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Snappedi(step int64) Vector4i {
+	mb := globalVector4iMethodBindings.method_snappedi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(step)
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Min : min
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Min(with Vector4i) Vector4i {
+	mb := globalVector4iMethodBindings.method_min
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Mini : mini
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Mini(with int64) Vector4i {
+	mb := globalVector4iMethodBindings.method_mini
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Max : max
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Max(with Vector4i) Vector4i {
+	mb := globalVector4iMethodBindings.method_max
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&with))
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Maxi : maxi
+ * is_vararg = false, is_static = false
+ * goReturnType(Vector4i) -> Vector4i
+ */
+func (cx *Vector4i) Maxi(with int64) Vector4i {
+	mb := globalVector4iMethodBindings.method_maxi
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(with)
+
+	ret := CallBuiltinMethodPtrRet[Vector4i](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* DistanceTo : distance_to
+ * is_vararg = false, is_static = false
+ * goReturnType(float) -> float32
+ */
+func (cx *Vector4i) DistanceTo(to Vector4i) float32 {
+	mb := globalVector4iMethodBindings.method_distance_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[float32](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* DistanceSquaredTo : distance_squared_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *Vector4i) DistanceSquaredTo(to Vector4i) int64 {
+	mb := globalVector4iMethodBindings.method_distance_squared_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
 	runtime.KeepAlive(args)
 	return ret
 }
@@ -9167,6 +11266,8 @@ func copyPlaneWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCons
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -9631,6 +11732,8 @@ func copyQuaternionWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensio
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -10280,6 +12383,8 @@ func copyAABBWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionConst
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -10971,6 +13076,8 @@ func copyBasisWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCons
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Inverse : inverse
@@ -11441,12 +13548,28 @@ func (cx *Basis) Multiply_int(right int64) Basis {
 	return CallBuiltinOperatorPtr[Basis](globalBasisMethodBindings.operator_multiply_int, lt, rt)
 }
 
+// Divide_int operator
+func (cx *Basis) Divide_int(right int64) Basis {
+	lt := cx.NativeConstPtr()
+	eRight := Int64Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Basis](globalBasisMethodBindings.operator_divide_int, lt, rt)
+}
+
 // Multiply_float operator
 func (cx *Basis) Multiply_float(right float32) Basis {
 	lt := cx.NativeConstPtr()
 	eRight := Float32Encoder.EncodeTypePtr(right)
 	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
 	return CallBuiltinOperatorPtr[Basis](globalBasisMethodBindings.operator_multiply_float, lt, rt)
+}
+
+// Divide_float operator
+func (cx *Basis) Divide_float(right float32) Basis {
+	lt := cx.NativeConstPtr()
+	eRight := Float32Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Basis](globalBasisMethodBindings.operator_divide_float, lt, rt)
 }
 
 // Multiply_Vector3 operator
@@ -11597,6 +13720,8 @@ func copyTransform3DWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensi
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -11925,12 +14050,28 @@ func (cx *Transform3D) Multiply_int(right int64) Transform3D {
 	return CallBuiltinOperatorPtr[Transform3D](globalTransform3DMethodBindings.operator_multiply_int, lt, rt)
 }
 
+// Divide_int operator
+func (cx *Transform3D) Divide_int(right int64) Transform3D {
+	lt := cx.NativeConstPtr()
+	eRight := Int64Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Transform3D](globalTransform3DMethodBindings.operator_divide_int, lt, rt)
+}
+
 // Multiply_float operator
 func (cx *Transform3D) Multiply_float(right float32) Transform3D {
 	lt := cx.NativeConstPtr()
 	eRight := Float32Encoder.EncodeTypePtr(right)
 	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
 	return CallBuiltinOperatorPtr[Transform3D](globalTransform3DMethodBindings.operator_multiply_float, lt, rt)
+}
+
+// Divide_float operator
+func (cx *Transform3D) Divide_float(right float32) Transform3D {
+	lt := cx.NativeConstPtr()
+	eRight := Float32Encoder.EncodeTypePtr(right)
+	rt := (GDExtensionConstTypePtr)(unsafe.Pointer(eRight))
+	return CallBuiltinOperatorPtr[Transform3D](globalTransform3DMethodBindings.operator_divide_float, lt, rt)
 }
 
 // Multiply_Vector3 operator
@@ -12087,6 +14228,8 @@ func copyProjectionWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensio
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -12938,6 +15081,89 @@ func copyColorWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCons
 	}
 }
 
+//string ext methods
+
+/* Html : html
+ * is_vararg = false, is_static = true
+ * goReturnType(Color) -> Color
+ */
+func (cx *Color) Html_StrExt(str_rgba string) Color {
+	// convert string arguments to godot string
+
+	rgba := NewStringWithLatin1Chars(str_rgba)
+	defer rgba.Destroy()
+	mb := globalColorMethodBindings.method_html
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := (GDExtensionTypePtr)(nullptr)
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&rgba))
+
+	ret := CallBuiltinMethodPtrRet[Color](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* HtmlIsValid : html_is_valid
+ * is_vararg = false, is_static = true
+ * goReturnType(bool) -> bool
+ */
+func (cx *Color) HtmlIsValid_StrExt(str_color string) bool {
+	// convert string arguments to godot string
+
+	color := NewStringWithLatin1Chars(str_color)
+	defer color.Destroy()
+	mb := globalColorMethodBindings.method_html_is_valid
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := (GDExtensionTypePtr)(nullptr)
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&color))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FromString : from_string
+ * is_vararg = false, is_static = true
+ * goReturnType(Color) -> Color
+ */
+func (cx *Color) FromString_StrExt(str_str string, defaultName Color) Color {
+	// convert string arguments to godot string
+
+	str := NewStringWithLatin1Chars(str_str)
+	defer str.Destroy()
+
+	mb := globalColorMethodBindings.method_from_string
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := (GDExtensionTypePtr)(nullptr)
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&str))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&defaultName))
+
+	ret := CallBuiltinMethodPtrRet[Color](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 // methods
 
 /* ToArgb32 : to_argb32
@@ -13774,6 +16000,1052 @@ func copyStringNameWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensio
 	}
 }
 
+//string ext methods
+
+/* CasecmpTo : casecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) CasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_casecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NocasecmpTo : nocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) NocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_nocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NaturalcasecmpTo : naturalcasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) NaturalcasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_naturalcasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* NaturalnocasecmpTo : naturalnocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) NaturalnocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_naturalnocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilecasecmpTo : filecasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) FilecasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_filecasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilenocasecmpTo : filenocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) FilenocasecmpTo_StrExt(str_to string) int64 {
+	// convert string arguments to godot string
+
+	to := NewStringWithLatin1Chars(str_to)
+	defer to.Destroy()
+	mb := globalStringNameMethodBindings.method_filenocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* GetSlice : get_slice
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) GetSlice_StrExt(str_delimiter string, slice int64) String {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringNameMethodBindings.method_get_slice
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = Int64Encoder.EncodeTypePtr(slice)
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* GetSliceCount : get_slice_count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) GetSliceCount_StrExt(str_delimiter string) int64 {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+	mb := globalStringNameMethodBindings.method_get_slice_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Find : find
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Find_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_find
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Findn : findn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Findn_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_findn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Count : count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Count_StrExt(str_what string, from int64, to int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	args[2] = Int64Encoder.EncodeTypePtr(to)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Countn : countn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Countn_StrExt(str_what string, from int64, to int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_countn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	args[2] = Int64Encoder.EncodeTypePtr(to)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfind : rfind
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Rfind_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_rfind
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfindn : rfindn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Rfindn_StrExt(str_what string, from int64) int64 {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	mb := globalStringNameMethodBindings.method_rfindn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Match : match
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) Match_StrExt(str_expr string) bool {
+	// convert string arguments to godot string
+
+	expr := NewStringWithLatin1Chars(str_expr)
+	defer expr.Destroy()
+	mb := globalStringNameMethodBindings.method_match
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&expr))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Matchn : matchn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) Matchn_StrExt(str_expr string) bool {
+	// convert string arguments to godot string
+
+	expr := NewStringWithLatin1Chars(str_expr)
+	defer expr.Destroy()
+	mb := globalStringNameMethodBindings.method_matchn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&expr))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* BeginsWith : begins_with
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) BeginsWith_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringNameMethodBindings.method_begins_with
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* EndsWith : ends_with
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) EndsWith_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringNameMethodBindings.method_ends_with
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* IsSubsequenceOf : is_subsequence_of
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) IsSubsequenceOf_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringNameMethodBindings.method_is_subsequence_of
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* IsSubsequenceOfn : is_subsequence_ofn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) IsSubsequenceOfn_StrExt(str_text string) bool {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringNameMethodBindings.method_is_subsequence_ofn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Similarity : similarity
+ * is_vararg = false, is_static = false
+ * goReturnType(float) -> float32
+ */
+func (cx *StringName) Similarity_StrExt(str_text string) float32 {
+	// convert string arguments to godot string
+
+	text := NewStringWithLatin1Chars(str_text)
+	defer text.Destroy()
+	mb := globalStringNameMethodBindings.method_similarity
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&text))
+
+	ret := CallBuiltinMethodPtrRet[float32](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Format : format
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Format_StrExt(values Variant, str_placeholder string) String {
+	// convert string arguments to godot string
+
+	placeholder := NewStringWithLatin1Chars(str_placeholder)
+	defer placeholder.Destroy()
+	mb := globalStringNameMethodBindings.method_format
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&values))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&placeholder))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Replace : replace
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Replace_StrExt(str_what string, str_forwhat string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	forwhat := NewStringWithLatin1Chars(str_forwhat)
+	defer forwhat.Destroy()
+	mb := globalStringNameMethodBindings.method_replace
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&forwhat))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Replacen : replacen
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Replacen_StrExt(str_what string, str_forwhat string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+
+	forwhat := NewStringWithLatin1Chars(str_forwhat)
+	defer forwhat.Destroy()
+	mb := globalStringNameMethodBindings.method_replacen
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&forwhat))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Insert : insert
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Insert_StrExt(position int64, str_what string) String {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringNameMethodBindings.method_insert
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(position)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Split : split
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedStringArray) -> PackedStringArray
+ */
+func (cx *StringName) Split_StrExt(str_delimiter string, allow_empty bool, maxsplit int64) PackedStringArray {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringNameMethodBindings.method_split
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	args[2] = Int64Encoder.EncodeTypePtr(maxsplit)
+
+	ret := CallBuiltinMethodPtrRet[PackedStringArray](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rsplit : rsplit
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedStringArray) -> PackedStringArray
+ */
+func (cx *StringName) Rsplit_StrExt(str_delimiter string, allow_empty bool, maxsplit int64) PackedStringArray {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringNameMethodBindings.method_rsplit
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 3
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	args[2] = Int64Encoder.EncodeTypePtr(maxsplit)
+
+	ret := CallBuiltinMethodPtrRet[PackedStringArray](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* SplitFloats : split_floats
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedFloat64Array) -> PackedFloat64Array
+ */
+func (cx *StringName) SplitFloats_StrExt(str_delimiter string, allow_empty bool) PackedFloat64Array {
+	// convert string arguments to godot string
+
+	delimiter := NewStringWithLatin1Chars(str_delimiter)
+	defer delimiter.Destroy()
+
+	mb := globalStringNameMethodBindings.method_split_floats
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&delimiter))
+
+	args[1] = BoolEncoder.EncodeTypePtr(allow_empty)
+
+	ret := CallBuiltinMethodPtrRet[PackedFloat64Array](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Lstrip : lstrip
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Lstrip_StrExt(str_chars string) String {
+	// convert string arguments to godot string
+
+	chars := NewStringWithLatin1Chars(str_chars)
+	defer chars.Destroy()
+	mb := globalStringNameMethodBindings.method_lstrip
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&chars))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rstrip : rstrip
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Rstrip_StrExt(str_chars string) String {
+	// convert string arguments to godot string
+
+	chars := NewStringWithLatin1Chars(str_chars)
+	defer chars.Destroy()
+	mb := globalStringNameMethodBindings.method_rstrip
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&chars))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* PathJoin : path_join
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) PathJoin_StrExt(str_file string) String {
+	// convert string arguments to godot string
+
+	file := NewStringWithLatin1Chars(str_file)
+	defer file.Destroy()
+	mb := globalStringNameMethodBindings.method_path_join
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&file))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Indent : indent
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Indent_StrExt(str_prefix string) String {
+	// convert string arguments to godot string
+
+	prefix := NewStringWithLatin1Chars(str_prefix)
+	defer prefix.Destroy()
+	mb := globalStringNameMethodBindings.method_indent
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&prefix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Contains : contains
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) Contains_StrExt(str_what string) bool {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringNameMethodBindings.method_contains
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Containsn : containsn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) Containsn_StrExt(str_what string) bool {
+	// convert string arguments to godot string
+
+	what := NewStringWithLatin1Chars(str_what)
+	defer what.Destroy()
+	mb := globalStringNameMethodBindings.method_containsn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Lpad : lpad
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Lpad_StrExt(min_length int64, str_character string) String {
+	// convert string arguments to godot string
+
+	character := NewStringWithLatin1Chars(str_character)
+	defer character.Destroy()
+	mb := globalStringNameMethodBindings.method_lpad
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min_length)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&character))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rpad : rpad
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) Rpad_StrExt(min_length int64, str_character string) String {
+	// convert string arguments to godot string
+
+	character := NewStringWithLatin1Chars(str_character)
+	defer character.Destroy()
+	mb := globalStringNameMethodBindings.method_rpad
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(min_length)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&character))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* TrimPrefix : trim_prefix
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) TrimPrefix_StrExt(str_prefix string) String {
+	// convert string arguments to godot string
+
+	prefix := NewStringWithLatin1Chars(str_prefix)
+	defer prefix.Destroy()
+	mb := globalStringNameMethodBindings.method_trim_prefix
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&prefix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* TrimSuffix : trim_suffix
+ * is_vararg = false, is_static = false
+ * goReturnType(String) -> String
+ */
+func (cx *StringName) TrimSuffix_StrExt(str_suffix string) String {
+	// convert string arguments to godot string
+
+	suffix := NewStringWithLatin1Chars(str_suffix)
+	defer suffix.Destroy()
+	mb := globalStringNameMethodBindings.method_trim_suffix
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&suffix))
+
+	ret := CallBuiltinMethodPtrRet[String](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 // methods
 
 /* CasecmpTo : casecmp_to
@@ -13848,6 +17120,50 @@ func (cx *StringName) NaturalcasecmpTo(to String) int64 {
  */
 func (cx *StringName) NaturalnocasecmpTo(to String) int64 {
 	mb := globalStringNameMethodBindings.method_naturalnocasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilecasecmpTo : filecasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) FilecasecmpTo(to String) int64 {
+	mb := globalStringNameMethodBindings.method_filecasecmp_to
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&to))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* FilenocasecmpTo : filenocasecmp_to
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) FilenocasecmpTo(to String) int64 {
+	mb := globalStringNameMethodBindings.method_filenocasecmp_to
 	if mb == nil {
 		log.Panic("method bind cannot be nil")
 	}
@@ -14000,6 +17316,30 @@ func (cx *StringName) Find(what String, from int64) int64 {
 	return ret
 }
 
+/* Findn : findn
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *StringName) Findn(what String, from int64) int64 {
+	mb := globalStringNameMethodBindings.method_findn
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* Count : count
  * is_vararg = false, is_static = false
  * goReturnType(int) -> int64
@@ -14046,30 +17386,6 @@ func (cx *StringName) Countn(what String, from int64, to int64) int64 {
 	args[1] = Int64Encoder.EncodeTypePtr(from)
 
 	args[2] = Int64Encoder.EncodeTypePtr(to)
-
-	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
-	runtime.KeepAlive(args)
-	return ret
-}
-
-/* Findn : findn
- * is_vararg = false, is_static = false
- * goReturnType(int) -> int64
- */
-func (cx *StringName) Findn(what String, from int64) int64 {
-	mb := globalStringNameMethodBindings.method_findn
-	if mb == nil {
-		log.Panic("method bind cannot be nil")
-	}
-	bx := cx.NativePtr()
-	if bx == nil {
-		log.Panic("object cannot be nil")
-	}
-	sz := 2
-	args := make([]GDExtensionTypePtr, sz, sz)
-	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
-
-	args[1] = Int64Encoder.EncodeTypePtr(from)
 
 	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
 	runtime.KeepAlive(args)
@@ -15044,6 +18360,28 @@ func (cx *StringName) IsEmpty() bool {
  */
 func (cx *StringName) Contains(what String) bool {
 	mb := globalStringNameMethodBindings.method_contains
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&what))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Containsn : containsn
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *StringName) Containsn(what String) bool {
+	mb := globalStringNameMethodBindings.method_containsn
 	if mb == nil {
 		log.Panic("method bind cannot be nil")
 	}
@@ -16180,6 +19518,13 @@ func (cx *StringName) Module_PackedColorArray(right PackedColorArray) String {
 	return CallBuiltinOperatorPtr[String](globalStringNameMethodBindings.operator_module_PackedColorArray, lt, rt)
 }
 
+// Module_PackedVector4Array operator
+func (cx *StringName) Module_PackedVector4Array(right PackedVector4Array) String {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[String](globalStringNameMethodBindings.operator_module_PackedVector4Array, lt, rt)
+}
+
 var _ GDBuiltInDestroyableClass = &NodePath{}
 
 /*
@@ -16256,6 +19601,8 @@ func copyNodePathWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionC
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -16411,6 +19758,30 @@ func (cx *NodePath) GetConcatenatedSubnames() StringName {
 	return ret
 }
 
+/* Slice : slice
+ * is_vararg = false, is_static = false
+ * goReturnType(NodePath) -> NodePath
+ */
+func (cx *NodePath) Slice(begin int64, end int64) NodePath {
+	mb := globalNodePathMethodBindings.method_slice
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(begin)
+
+	args[1] = Int64Encoder.EncodeTypePtr(end)
+
+	ret := CallBuiltinMethodPtrRet[NodePath](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* GetAsPropertyPath : get_as_property_path
  * is_vararg = false, is_static = false
  * goReturnType(NodePath) -> NodePath
@@ -16555,6 +19926,8 @@ func copyRIDWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionConstT
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -16738,7 +20111,61 @@ func copyCallableWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionC
 	}
 }
 
+//string ext methods
+
+/* Create : create
+ * is_vararg = false, is_static = true
+ * goReturnType(Callable) -> Callable
+ */
+func (cx *Callable) Create_StrExt(variant Variant, str_method string) Callable {
+	// convert string arguments to godot string
+
+	method := NewStringWithLatin1Chars(str_method)
+	defer method.Destroy()
+	mb := globalCallableMethodBindings.method_create
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := (GDExtensionTypePtr)(nullptr)
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&variant))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&method))
+
+	ret := CallBuiltinMethodPtrRet[Callable](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 // methods
+
+/* Create : create
+ * is_vararg = false, is_static = true
+ * goReturnType(Callable) -> Callable
+ */
+func (cx *Callable) Create(variant Variant, method StringName) Callable {
+	mb := globalCallableMethodBindings.method_create
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := (GDExtensionTypePtr)(nullptr)
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&variant))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&method))
+
+	ret := CallBuiltinMethodPtrRet[Callable](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
 
 /* Callv : callv
  * is_vararg = false, is_static = false
@@ -16885,6 +20312,24 @@ func (cx *Callable) GetMethod() StringName {
 	}
 
 	ret := CallBuiltinMethodPtrRet[StringName](mb, bx, nil)
+	return ret
+}
+
+/* GetArgumentCount : get_argument_count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *Callable) GetArgumentCount() int64 {
+	mb := globalCallableMethodBindings.method_get_argument_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, nil)
 	return ret
 }
 
@@ -17115,6 +20560,8 @@ func copySignalWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCon
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -17391,6 +20838,8 @@ func copyDictionaryWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensio
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Size : size
@@ -17469,6 +20918,30 @@ func (cx *Dictionary) Merge(dictionary Dictionary, overwrite bool) {
 	CallBuiltinMethodPtrNoRet(mb, bx, args...)
 	runtime.KeepAlive(args)
 
+}
+
+/* Merged : merged
+ * is_vararg = false, is_static = false
+ * goReturnType(Dictionary) -> Dictionary
+ */
+func (cx *Dictionary) Merged(dictionary Dictionary, overwrite bool) Dictionary {
+	mb := globalDictionaryMethodBindings.method_merged
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&dictionary))
+
+	args[1] = BoolEncoder.EncodeTypePtr(overwrite)
+
+	ret := CallBuiltinMethodPtrRet[Dictionary](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
 }
 
 /* Has : has
@@ -17659,6 +21132,30 @@ func (cx *Dictionary) Get(key Variant, defaultName Variant) Variant {
 	return ret
 }
 
+/* GetOrAdd : get_or_add
+ * is_vararg = false, is_static = false
+ * goReturnType(Variant) -> Variant
+ */
+func (cx *Dictionary) GetOrAdd(key Variant, defaultName Variant) Variant {
+	mb := globalDictionaryMethodBindings.method_get_or_add
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&key))
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&defaultName))
+
+	ret := CallBuiltinMethodPtrRet[Variant](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 /* MakeReadOnly : make_read_only
  * is_vararg = false, is_static = false
  * goReturnType() ->
@@ -17692,6 +21189,30 @@ func (cx *Dictionary) IsReadOnly() bool {
 	}
 
 	ret := CallBuiltinMethodPtrRet[bool](mb, bx, nil)
+	return ret
+}
+
+/* RecursiveEqual : recursive_equal
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *Dictionary) RecursiveEqual(dictionary Dictionary, recursion_count int64) bool {
+	mb := globalDictionaryMethodBindings.method_recursive_equal
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&dictionary))
+
+	args[1] = Int64Encoder.EncodeTypePtr(recursion_count)
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
 	return ret
 }
 
@@ -17954,6 +21475,18 @@ func NewArrayWithPackedColorArray(from PackedColorArray) Array {
 	return cx
 }
 
+// NewArray, index: 12
+func NewArrayWithPackedVector4Array(from PackedVector4Array) Array {
+	cx := Array{}
+	ptr := (GDExtensionUninitializedTypePtr)(unsafe.Pointer(cx.NativePtr()))
+	var args [1]GDExtensionConstTypePtr
+	// PackedVector4Array
+	// PackedVector4ArrayEncoder
+	args[0] = from.NativeConstPtr()
+	CallBuiltinConstructor(globalArrayMethodBindings.constructor_12, ptr, args[0])
+	return cx
+}
+
 func (cx *Array) Destroy() {
 	md := (GDExtensionPtrDestructor)(globalArrayMethodBindings.destructor)
 	bx := cx.NativePtr()
@@ -17979,6 +21512,8 @@ func copyArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionCons
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -19115,6 +22650,8 @@ func copyPackedByteArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExt
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -20554,6 +24091,8 @@ func copyPackedInt32ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDEx
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Size : size
@@ -21155,6 +24694,8 @@ func copyPackedInt64ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDEx
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -21758,6 +25299,8 @@ func copyPackedFloat32ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GD
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Size : size
@@ -22359,6 +25902,8 @@ func copyPackedFloat64ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GD
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -22962,6 +26507,281 @@ func copyPackedStringArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDE
 	}
 }
 
+//string ext methods
+
+/* Set : set
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedStringArray) Set_StrExt(index int64, str_value string) {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_set
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(index)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* PushBack : push_back
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedStringArray) PushBack_StrExt(str_value string) bool {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_push_back
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Append : append
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedStringArray) Append_StrExt(str_value string) bool {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_append
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Insert : insert
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedStringArray) Insert_StrExt(at_index int64, str_value string) int64 {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_insert
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(at_index)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Fill : fill
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedStringArray) Fill_StrExt(str_value string) {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_fill
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* Has : has
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedStringArray) Has_StrExt(str_value string) bool {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_has
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Bsearch : bsearch
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedStringArray) Bsearch_StrExt(str_value string, before bool) int64 {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+
+	mb := globalPackedStringArrayMethodBindings.method_bsearch
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = BoolEncoder.EncodeTypePtr(before)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Find : find
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedStringArray) Find_StrExt(str_value string, from int64) int64 {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+
+	mb := globalPackedStringArrayMethodBindings.method_find
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfind : rfind
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedStringArray) Rfind_StrExt(str_value string, from int64) int64 {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+
+	mb := globalPackedStringArrayMethodBindings.method_rfind
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Count : count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedStringArray) Count_StrExt(str_value string) int64 {
+	// convert string arguments to godot string
+
+	value := NewStringWithLatin1Chars(str_value)
+	defer value.Destroy()
+	mb := globalPackedStringArrayMethodBindings.method_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
 // methods
 
 /* Size : size
@@ -23563,6 +27383,8 @@ func copyPackedVector2ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GD
 		typedDst[i] = typedSrc[i]
 	}
 }
+
+//string ext methods
 
 // methods
 
@@ -24173,6 +27995,8 @@ func copyPackedVector3ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GD
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Size : size
@@ -24782,6 +28606,8 @@ func copyPackedColorArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDEx
 	}
 }
 
+//string ext methods
+
 // methods
 
 /* Size : size
@@ -25305,4 +29131,608 @@ func (cx *PackedColorArray) Add_PackedColorArray(right PackedColorArray) PackedC
 	lt := cx.NativeConstPtr()
 	rt := right.NativeConstPtr()
 	return CallBuiltinOperatorPtr[PackedColorArray](globalPackedColorArrayMethodBindings.operator_add_PackedColorArray, lt, rt)
+}
+
+var _ GDBuiltInDestroyableClass = &PackedVector4Array{}
+
+/*
+ * PackedVector4Array
+ * indexingReturnType: Vector4
+ * isKeyed: false
+ * hasDestructor: true
+ */
+type PackedVector4Array [16]uint8
+
+func (c *PackedVector4Array) NativeConstPtr() GDExtensionConstTypePtr {
+	return (GDExtensionConstTypePtr)(unsafe.Pointer(c))
+}
+
+func (c *PackedVector4Array) NativePtr() GDExtensionTypePtr {
+	return (GDExtensionTypePtr)(unsafe.Pointer(c))
+}
+
+// constructors
+// NewPackedVector4Array, index: 0
+func NewPackedVector4Array() PackedVector4Array {
+	cx := PackedVector4Array{}
+	ptr := (GDExtensionUninitializedTypePtr)(unsafe.Pointer(cx.NativePtr()))
+	CallBuiltinConstructor(globalPackedVector4ArrayMethodBindings.constructor_0, ptr)
+	return cx
+}
+
+// NewPackedVector4Array, index: 1
+func NewPackedVector4ArrayWithPackedVector4Array(from PackedVector4Array) PackedVector4Array {
+	cx := PackedVector4Array{}
+	ptr := (GDExtensionUninitializedTypePtr)(unsafe.Pointer(cx.NativePtr()))
+	var args [1]GDExtensionConstTypePtr
+	// PackedVector4Array
+	// PackedVector4ArrayEncoder
+	args[0] = from.NativeConstPtr()
+	CallBuiltinConstructor(globalPackedVector4ArrayMethodBindings.constructor_1, ptr, args[0])
+	return cx
+}
+
+// NewPackedVector4Array, index: 2
+func NewPackedVector4ArrayWithArray(from Array) PackedVector4Array {
+	cx := PackedVector4Array{}
+	ptr := (GDExtensionUninitializedTypePtr)(unsafe.Pointer(cx.NativePtr()))
+	var args [1]GDExtensionConstTypePtr
+	// Array
+	// ArrayEncoder
+	args[0] = from.NativeConstPtr()
+	CallBuiltinConstructor(globalPackedVector4ArrayMethodBindings.constructor_2, ptr, args[0])
+	return cx
+}
+
+func (cx *PackedVector4Array) Destroy() {
+	md := (GDExtensionPtrDestructor)(globalPackedVector4ArrayMethodBindings.destructor)
+	bx := cx.NativePtr()
+	CallFunc_GDExtensionPtrDestructor(md, bx)
+}
+
+// copy funuctions
+func NewPackedVector4ArrayWithGDExtensionConstTypePtr(src GDExtensionConstTypePtr) PackedVector4Array {
+	ret := PackedVector4Array{}
+	typedSrc := (*PackedVector4Array)(src)
+
+	for i := 0; i < 16; i++ {
+		ret[i] = typedSrc[i]
+	}
+
+	return (PackedVector4Array)(ret)
+}
+func copyPackedVector4ArrayWithGDExtensionTypePtr(dst GDExtensionTypePtr, src GDExtensionConstTypePtr) {
+	typedDst := (*PackedVector4Array)(dst)
+	typedSrc := (*PackedVector4Array)(src)
+
+	for i := 0; i < 16; i++ {
+		typedDst[i] = typedSrc[i]
+	}
+}
+
+//string ext methods
+
+// methods
+
+/* Size : size
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Size() int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_size
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, nil)
+	return ret
+}
+
+/* IsEmpty : is_empty
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedVector4Array) IsEmpty() bool {
+	mb := globalPackedVector4ArrayMethodBindings.method_is_empty
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, nil)
+	return ret
+}
+
+/* Set : set
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) Set(index int64, value Vector4) {
+	mb := globalPackedVector4ArrayMethodBindings.method_set
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(index)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* PushBack : push_back
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedVector4Array) PushBack(value Vector4) bool {
+	mb := globalPackedVector4ArrayMethodBindings.method_push_back
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Append : append
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedVector4Array) Append(value Vector4) bool {
+	mb := globalPackedVector4ArrayMethodBindings.method_append
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* AppendArray : append_array
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) AppendArray(array PackedVector4Array) {
+	mb := globalPackedVector4ArrayMethodBindings.method_append_array
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&array))
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* RemoveAt : remove_at
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) RemoveAt(index int64) {
+	mb := globalPackedVector4ArrayMethodBindings.method_remove_at
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(index)
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* Insert : insert
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Insert(at_index int64, value Vector4) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_insert
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(at_index)
+
+	args[1] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Fill : fill
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) Fill(value Vector4) {
+	mb := globalPackedVector4ArrayMethodBindings.method_fill
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	CallBuiltinMethodPtrNoRet(mb, bx, args...)
+	runtime.KeepAlive(args)
+
+}
+
+/* Resize : resize
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Resize(new_size int64) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_resize
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(new_size)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Clear : clear
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) Clear() {
+	mb := globalPackedVector4ArrayMethodBindings.method_clear
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	CallBuiltinMethodPtrNoRet(mb, bx, nil)
+
+}
+
+/* Has : has
+ * is_vararg = false, is_static = false
+ * goReturnType(bool) -> bool
+ */
+func (cx *PackedVector4Array) Has(value Vector4) bool {
+	mb := globalPackedVector4ArrayMethodBindings.method_has
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[bool](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Reverse : reverse
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) Reverse() {
+	mb := globalPackedVector4ArrayMethodBindings.method_reverse
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	CallBuiltinMethodPtrNoRet(mb, bx, nil)
+
+}
+
+/* Slice : slice
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedVector4Array) -> PackedVector4Array
+ */
+func (cx *PackedVector4Array) Slice(begin int64, end int64) PackedVector4Array {
+	mb := globalPackedVector4ArrayMethodBindings.method_slice
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = Int64Encoder.EncodeTypePtr(begin)
+
+	args[1] = Int64Encoder.EncodeTypePtr(end)
+
+	ret := CallBuiltinMethodPtrRet[PackedVector4Array](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* ToByteArray : to_byte_array
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedByteArray) -> PackedByteArray
+ */
+func (cx *PackedVector4Array) ToByteArray() PackedByteArray {
+	mb := globalPackedVector4ArrayMethodBindings.method_to_byte_array
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	ret := CallBuiltinMethodPtrRet[PackedByteArray](mb, bx, nil)
+	return ret
+}
+
+/* Sort : sort
+ * is_vararg = false, is_static = false
+ * goReturnType() ->
+ */
+func (cx *PackedVector4Array) Sort() {
+	mb := globalPackedVector4ArrayMethodBindings.method_sort
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	CallBuiltinMethodPtrNoRet(mb, bx, nil)
+
+}
+
+/* Bsearch : bsearch
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Bsearch(value Vector4, before bool) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_bsearch
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = BoolEncoder.EncodeTypePtr(before)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Duplicate : duplicate
+ * is_vararg = false, is_static = false
+ * goReturnType(PackedVector4Array) -> PackedVector4Array
+ */
+func (cx *PackedVector4Array) Duplicate() PackedVector4Array {
+	mb := globalPackedVector4ArrayMethodBindings.method_duplicate
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+
+	ret := CallBuiltinMethodPtrRet[PackedVector4Array](mb, bx, nil)
+	return ret
+}
+
+/* Find : find
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Find(value Vector4, from int64) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_find
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Rfind : rfind
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Rfind(value Vector4, from int64) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_rfind
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 2
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	args[1] = Int64Encoder.EncodeTypePtr(from)
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+/* Count : count
+ * is_vararg = false, is_static = false
+ * goReturnType(int) -> int64
+ */
+func (cx *PackedVector4Array) Count(value Vector4) int64 {
+	mb := globalPackedVector4ArrayMethodBindings.method_count
+	if mb == nil {
+		log.Panic("method bind cannot be nil")
+	}
+	bx := cx.NativePtr()
+	if bx == nil {
+		log.Panic("object cannot be nil")
+	}
+	sz := 1
+	args := make([]GDExtensionTypePtr, sz, sz)
+	args[0] = (GDExtensionTypePtr)(unsafe.Pointer(&value))
+
+	ret := CallBuiltinMethodPtrRet[int64](mb, bx, args...)
+	runtime.KeepAlive(args)
+	return ret
+}
+
+func (cx *PackedVector4Array) GetIndexed(i int64) Vector4 {
+	var ret Vector4
+	CallFunc_GDExtensionPtrIndexedGetter(
+		globalPackedVector4ArrayMethodBindings.indexed_getter,
+		cx.NativeConstPtr(),
+		(GDExtensionInt)(i),
+		(GDExtensionTypePtr)(unsafe.Pointer(&ret)),
+	)
+	return ret
+}
+
+func (cx *PackedVector4Array) SetIndexed(i int64, value Vector4) {
+	CallFunc_GDExtensionPtrIndexedSetter(
+		globalPackedVector4ArrayMethodBindings.indexed_setter,
+		cx.NativePtr(),
+		(GDExtensionInt)(i),
+		(GDExtensionConstTypePtr)(unsafe.Pointer(&value)),
+	)
+}
+
+// members
+// Equal_Variant operator
+func (cx *PackedVector4Array) Equal_Variant(right Variant) bool {
+	lt := cx.NativeConstPtr()
+	rt := (GDExtensionConstTypePtr)(right.NativeConstPtr())
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_equal_Variant, lt, rt)
+}
+
+// Not_equal_Variant operator
+func (cx *PackedVector4Array) Not_equal_Variant(right Variant) bool {
+	lt := cx.NativeConstPtr()
+	rt := (GDExtensionConstTypePtr)(right.NativeConstPtr())
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_not_equal_Variant, lt, rt)
+}
+
+// Not operator
+func (cx *PackedVector4Array) Not() bool {
+	lt := cx.NativeConstPtr()
+	rt := (GDExtensionConstTypePtr)(nullptr)
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_not, lt, rt)
+}
+
+// In_Dictionary operator
+func (cx *PackedVector4Array) In_Dictionary(right Dictionary) bool {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_in_Dictionary, lt, rt)
+}
+
+// In_Array operator
+func (cx *PackedVector4Array) In_Array(right Array) bool {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_in_Array, lt, rt)
+}
+
+// Equal_PackedVector4Array operator
+func (cx *PackedVector4Array) Equal_PackedVector4Array(right PackedVector4Array) bool {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_equal_PackedVector4Array, lt, rt)
+}
+
+// Not_equal_PackedVector4Array operator
+func (cx *PackedVector4Array) Not_equal_PackedVector4Array(right PackedVector4Array) bool {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[bool](globalPackedVector4ArrayMethodBindings.operator_not_equal_PackedVector4Array, lt, rt)
+}
+
+// Add_PackedVector4Array operator
+func (cx *PackedVector4Array) Add_PackedVector4Array(right PackedVector4Array) PackedVector4Array {
+	lt := cx.NativeConstPtr()
+	rt := right.NativeConstPtr()
+	return CallBuiltinOperatorPtr[PackedVector4Array](globalPackedVector4ArrayMethodBindings.operator_add_PackedVector4Array, lt, rt)
 }

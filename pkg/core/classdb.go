@@ -21,7 +21,7 @@ import (
 )
 
 func ClassDBAddPropertyGroup(t GDClass, p_name string, p_prefix string) {
-	cn := t.GetClassName()
+	cn := GetClassName(t)
 	if _, ok := Internal.GDRegisteredGDClasses.Get(cn); !ok {
 		panic(fmt.Sprintf(`Trying to add property group "%s" to non-existing class "%s".`, p_name, cn))
 	}
@@ -40,7 +40,7 @@ func ClassDBAddPropertyGroup(t GDClass, p_name string, p_prefix string) {
 }
 
 func ClassDBAddPropertySubgroup(t GDClass, p_name string, p_prefix string) {
-	cn := t.GetClassName()
+	cn := GetClassName(t)
 	if _, ok := Internal.GDRegisteredGDClasses.Get(cn); !ok {
 		panic(fmt.Sprintf(`Trying to add property sub-group "%s" to non-existing class "%s".`, p_name, cn))
 	}
@@ -67,7 +67,7 @@ func ClassDBAddProperty(
 	p_getter string,
 ) {
 	t := reflect.TypeOf(inst)
-	cn := inst.GetClassName()
+	cn := GetClassName(inst)
 	pn := p_property_name
 	ci, ok := Internal.GDRegisteredGDClasses.Get(cn)
 	if !ok {
@@ -150,7 +150,7 @@ func ClassDBAddSignal(t GDClass, signalName string, params ...SignalParam) {
 		zap.String("signalName", signalName),
 		zap.Any("params", params),
 	)
-	typeName := t.GetClassName()
+	typeName := GetClassName(t)
 	ci, ok := Internal.GDRegisteredGDClasses.Get(typeName)
 	if !ok {
 		log.Panic("Class doesn't exist.", zap.String("class", typeName))
@@ -229,7 +229,7 @@ func classDBBindMethod(
 	defaultValues []Variant,
 ) *MethodBindImpl {
 	t := reflect.TypeOf(inst)
-	className := inst.GetClassName()
+	className := GetClassName(inst)
 	log.Debug("classDBBindMethod called",
 		zap.Reflect("inst", inst),
 		zap.String("go_name", goMethodName),
@@ -330,7 +330,7 @@ func classDBBindIntegerConstant(t GDClass, p_enum_name, p_constant_name string, 
 		ci *ClassInfo
 		ok bool
 	)
-	typeName := t.GetClassName()
+	typeName := GetClassName(t)
 
 	if ci, ok = Internal.GDRegisteredGDClasses.Get(typeName); !ok {
 		log.Panic("Class doesn't exist.", zap.String("class", typeName))
@@ -369,6 +369,18 @@ func classDBBindIntegerConstant(t GDClass, p_enum_name, p_constant_name string, 
 		bitfield,
 	)
 }
+func AutoRegisterClassDB[T Object]() {
+	var zero T
+	val := reflect.New(reflect.TypeOf(zero).Elem()).Interface().(T)
+	ClassDBRegisterClass(val, []GDExtensionPropertyInfo{}, nil, func(t GDClass) {
+		autoRegisterFunc2ClassDB[T](t)
+		val.RegisterClassDB()
+		signals := val.GetSignals()
+		for _, signal := range signals {
+			ClassDBAddSignal(t, signal)
+		}
+	})
+}
 
 func ClassDBRegisterClass[T Object](
 	in T,
@@ -377,10 +389,9 @@ func ClassDBRegisterClass[T Object](
 	bindMethodsFunc func(t GDClass),
 ) {
 	inst := (GDClass)(in)
-
 	// Register this class within our plugin
-	className := inst.GetClassName()
-	parentName := inst.GetParentClassName()
+	className := GetClassName(inst)
+	parentName := GetParentClassName(inst)
 	if className == parentName {
 		log.Panic("class and parent cannot have the same name",
 			zap.String("class", className),

@@ -97,6 +97,8 @@ func ReflectTypeToGDExtensionVariantType(t reflect.Type) GDExtensionVariantType 
 			return GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR3_ARRAY
 		case PackedColorArray:
 			return GDEXTENSION_VARIANT_TYPE_PACKED_COLOR_ARRAY
+		case PackedVector4Array:
+			return GDEXTENSION_VARIANT_TYPE_PACKED_VECTOR4_ARRAY
 		case Variant:
 			return GDEXTENSION_VARIANT_TYPE_VARIANT_MAX
 		default:

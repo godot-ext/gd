@@ -11,6 +11,7 @@ import (
 	"text/template"
 
 	"github.com/godot-go/godot-go/cmd/gdextensionparser/clang"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 	"github.com/iancoleman/strcase"
 )
 
@@ -102,16 +103,20 @@ func GenerateGDExtensionWrapperSrcFile(projectPath string, ast clang.CHeaderFile
 
 func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    gdiVariableName,
-		"snakeCase":          strcase.ToSnake,
-		"camelCase":          strcase.ToCamel,
-		"goReturnType":       goReturnType,
-		"goArgumentType":     goArgumentType,
-		"goEnumValue":        goEnumValue,
-		"add":                add,
-		"cgoCastArgument":    cgoCastArgument,
-		"cgoCastReturnType":  cgoCastReturnType,
-		"cgoCleanUpArgument": cgoCleanUpArgument,
+		"gdiVariableName":      gdiVariableName,
+		"snakeCase":            strcase.ToSnake,
+		"camelCase":            strcase.ToCamel,
+		"goReturnType":         goReturnType,
+		"goArgumentType":       goArgumentType,
+		"goEnumValue":          goEnumValue,
+		"add":                  add,
+		"cgoCastArgument":      cgoCastArgument,
+		"cgoCastReturnType":    cgoCastReturnType,
+		"cgoCleanUpArgument":   cgoCleanUpArgument,
+		"goHasStrTypeInParams": common.GoHasStrTypeInParams,
+		"goArgumentTypeExt":    common.GoArgumentTypeExt,
+		"goArgumentNameExt":    common.GoArgumentNameExt,
+		"goIsStringType":       common.GoIsStringType,
 	}
 
 	tmpl, err := template.New("ffi_wrapper.gen.go").

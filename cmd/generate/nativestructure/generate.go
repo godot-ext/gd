@@ -11,6 +11,7 @@ import (
 	_ "embed"
 
 	"github.com/godot-go/godot-go/cmd/extensionapiparser"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 )
 
 var (
@@ -33,6 +34,10 @@ func GenerateNativeStrucutres(projectPath string, extensionApi extensionapiparse
 		Funcs(template.FuncMap{
 			"nativeStructureFormatToFields": nativeStructureFormatToFields,
 			"hasPrefix":                     strings.HasPrefix,
+			"goHasStrTypeInParams":          common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":             common.GoArgumentTypeExt,
+			"goArgumentNameExt":             common.GoArgumentNameExt,
+			"goIsStringType":                common.GoIsStringType,
 		}).
 		Parse(nativeStructuresText)
 

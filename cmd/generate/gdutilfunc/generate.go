@@ -10,6 +10,7 @@ import (
 	_ "embed"
 
 	"github.com/godot-go/godot-go/cmd/extensionapiparser"
+	"github.com/godot-go/godot-go/cmd/generate/common"
 	"github.com/iancoleman/strcase"
 )
 
@@ -31,13 +32,17 @@ func Generate(projectPath string, eapi extensionapiparser.ExtensionApi) {
 func GenerateUtilityFunctions(projectPath string, extensionApi extensionapiparser.ExtensionApi) error {
 	tmpl, err := template.New("utilityfunctions.gen.go").
 		Funcs(template.FuncMap{
-			"camelCase":           strcase.ToCamel,
-			"goArgumentName":      goArgumentName,
-			"goArgumentType":      goArgumentType,
-			"goEncoder":           goEncoder,
-			"goReturnType":        goReturnType,
-			"coalesce":            coalesce,
-			"goEncodeIsReference": goEncodeIsReference,
+			"camelCase":            strcase.ToCamel,
+			"goArgumentName":       goArgumentName,
+			"goArgumentType":       goArgumentType,
+			"goEncoder":            goEncoder,
+			"goReturnType":         goReturnType,
+			"coalesce":             coalesce,
+			"goEncodeIsReference":  goEncodeIsReference,
+			"goHasStrTypeInParams": common.GoHasStrTypeInParams,
+			"goArgumentTypeExt":    common.GoArgumentTypeExt,
+			"goArgumentNameExt":    common.GoArgumentNameExt,
+			"goIsStringType":       common.GoIsStringType,
 		}).
 		Parse(utilityFunctionsText)
 

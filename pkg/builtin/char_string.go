@@ -73,6 +73,10 @@ func GDExtensionStringPtrWithUtf8Chars(ptr GDExtensionStringPtr, content string)
 func GDExtensionStringPtrWithLatin1Chars(ptr GDExtensionStringPtr, content string) {
 	CallFunc_GDExtensionInterfaceStringNewWithLatin1Chars((GDExtensionUninitializedStringPtr)(ptr), content)
 }
+func NewNodePathWithLatin1Chars(content string) NodePath {
+	from := NewStringWithLatin1Chars(content)
+	return NewNodePathWithString(from)
+}
 
 func NewStringWithLatin1Chars(content string) String {
 	cx := String{}

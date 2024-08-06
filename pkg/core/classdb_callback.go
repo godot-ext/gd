@@ -15,7 +15,6 @@ import (
 	. "github.com/godot-go/godot-go/pkg/builtin"
 	. "github.com/godot-go/godot-go/pkg/ffi"
 	"github.com/godot-go/godot-go/pkg/log"
-	"github.com/godot-go/godot-go/pkg/util"
 	"go.uber.org/zap"
 )
 
@@ -29,7 +28,7 @@ func GoCallback_ClassCreationInfoToString(
 		// zap.Reflect("p_instance", p_instance),
 	)
 	inst := ObjectClassFromGDExtensionClassInstancePtr((GDExtensionClassInstancePtr)(p_instance))
-	className := inst.GetClassName()
+	className := GetClassName(inst)
 	instanceId := inst.GetInstanceId()
 	value := fmt.Sprintf("[ GDExtension::%s <--> Instance ID:%d ]", className, instanceId)
 	GDExtensionStringPtrWithLatin1Chars((GDExtensionStringPtr)(p_out), value)
@@ -56,7 +55,7 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 	if inst == nil {
 		log.Panic("GDExtensionClassInstancePtr cannot be null")
 	}
-	className := inst.GetClassName()
+	className := GetClassName(inst)
 	snMethodName := (*StringName)(unsafe.Pointer(pName))
 	sMethodName := snMethodName.AsString()
 	methodName := (&sMethodName).ToAscii()
@@ -84,6 +83,9 @@ func GoCallback_ClassCreationInfoCallVirtualWithData(pInstance C.GDExtensionClas
 		(*GDExtensionConstTypePtr)(unsafe.Pointer(p_args)),
 		len(mb.MethodMetadata.GoArgumentTypes),
 	)
+	if methodName == "_ready" {
+		autoBindFields(inst)
+	}
 	mb.Ptrcall(
 		inst,
 		args,
@@ -240,10 +242,7 @@ func GoCallback_ClassCreationInfoGet(pInstance C.GDExtensionClassInstancePtr, pN
 	}
 	gdStrV := v.ToString()
 	defer gdStrV.Destroy()
-	log.Info("reflect method called",
-		zap.String("ret", util.ReflectValueSliceToString(reflectedRet)),
-		zap.String("v", gdStrV.ToUtf8()),
-	)
+	//log.Info("reflect method called", zap.String("ret", util.ReflectValueSliceToString(reflectedRet)), zap.String("v", gdStrV.ToUtf8()), )
 	*(*Variant)(unsafe.Pointer(rRet)) = v
 	return 1
 }
@@ -283,9 +282,7 @@ func GoCallback_ClassCreationInfoSet(pInstance C.GDExtensionClassInstancePtr, pN
 		reflect.ValueOf(v),
 	}
 	reflectedRet := mcmi.MethodBind.PtrcallFunc.Call(args)
-	log.Info("reflect method called",
-		zap.String("ret", util.ReflectValueSliceToString(reflectedRet)),
-	)
+	//log.Info("reflect method called", zap.String("ret", util.ReflectValueSliceToString(reflectedRet)), )
 	if !reflectedRet[0].Bool() {
 		return 0
 	}

@@ -42,6 +42,17 @@ type {{ goClassInterfaceName $c.Name }} interface {
 	{{- if $m.IsVararg }}varargs ...Variant,{{- end -}}
 	) {{ if $view.IsRefcountedClassName $fnReturnType }}Ref{{ $fnReturnType }}{{ else }}{{ $fnReturnType }}{{ end }}
 	{{ else -}}
+
+	{{- if goHasStrTypeInParams $m.Arguments  -}}
+		{{ goMethodName $m.Name }}_StrExt(
+		{{- range $k, $a := $m.Arguments -}}
+		{{ $fnArgType := goArgumentTypeExt $a -}}
+		{{ goArgumentNameExt $a }} {{ if $view.IsRefcountedClassName $fnArgType }}Ref{{ $fnArgType }}{{ else }}{{ $fnArgType }}{{ end }},
+		{{- end -}}
+		{{ if $m.IsVararg }}varargs ...Variant,{{- end -}}
+		) {{ if $view.IsRefcountedClassName $fnReturnType }}Ref{{ $fnReturnType }}{{ else }}{{ $fnReturnType }}{{ end }}
+	{{ end -}}
+
 	{{ goMethodName $m.Name }}(
 	{{- range $k, $a := $m.Arguments -}}
 	{{ $fnArgType := goArgumentType (coalesce $a.Meta $a.Type) -}}

@@ -56,7 +56,6 @@ func CreateGDClassInstance(tn string) GDClass {
 	if owner == nil {
 		log.Panic("owner is nil", zap.String("type_name", tn))
 	}
-
 	// create GDClass
 	reflectedInst := reflect.New(ci.ClassType)
 
@@ -87,4 +86,64 @@ func CreateGDClassInstance(tn string) GDClass {
 	)
 
 	return inst
+}
+
+// auto bind fields
+func autoBindFields(inst GDClass) {
+	if inst.(Node) != nil {
+		// bind fields with tag "gdbind"
+		fieldsWithTag := getFieldsWithTag(inst, "gdbind")
+		for fieldName, field := range fieldsWithTag {
+			nodeName := field.Tag.Get("gdbind")
+			node := inst.(Node).GetNode_StrExt(nodeName)
+			objValue := ObjectCastTo(node, field.Type.Name())
+			err := setFieldValue(inst, fieldName, objValue)
+			if err != nil {
+				log.Error("setFieldValue failed" + err.Error())
+			}
+		}
+
+		// bind fields with tag "gdexport" // TODO(tanjp)
+	}
+}
+func getFieldsWithTag(structType interface{}, tagName string) map[string]reflect.StructField {
+	t := reflect.TypeOf(structType)
+	if t.Kind() == reflect.Ptr {
+		t = t.Elem()
+	}
+
+	fieldsWithTag := make(map[string]reflect.StructField)
+
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		tag := field.Tag.Get(tagName)
+		if tag != "" {
+			fieldsWithTag[field.Name] = field
+		}
+	}
+
+	return fieldsWithTag
+}
+func setFieldValue(structPtr interface{}, fieldName string, value interface{}) error {
+	v := reflect.ValueOf(structPtr)
+	if v.Kind() != reflect.Ptr || v.Elem().Kind() != reflect.Struct {
+		return fmt.Errorf("expected a pointer to a struct")
+	}
+
+	v = v.Elem()
+	field := v.FieldByName(fieldName)
+	if !field.IsValid() {
+		return fmt.Errorf("no such field: %s", fieldName)
+	}
+	if !field.CanSet() {
+		return fmt.Errorf("cannot set field: %s", fieldName)
+	}
+	val := reflect.ValueOf(value)
+	field.Set(val)
+	return nil
+}
+
+func GetNode[T any](cx Node, str_path string) T {
+	node := cx.GetNode_StrExt(str_path)
+	return ObjectCastToGeneric[T](node)
 }

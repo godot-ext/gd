@@ -23,3 +23,7 @@ func GetInputSingleton() Input {
 	owner := (*GodotObject)(unsafe.Pointer(GetSingleton("Input")))
 	return NewInputWithGodotOwnerObject(owner)
 }
+func GetProjectSettingSingleton() ProjectSettings {
+	owner := (*GodotObject)(unsafe.Pointer(GetSingleton("ProjectSetting")))
+	return NewProjectSettingsWithGodotOwnerObject(owner)
+}
